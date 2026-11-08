@@ -20,10 +20,7 @@ https://telemetriaws1.ana.gov.br/ServiceANA.asmx/DadosHidrometeorologicos
     ?codEstacao=<CÓDIGO>&dataInicio=DD/MM/AAAA&dataFim=DD/MM/AAAA
 ```
 
-Campos usados:
-- `Nivel`: nível, em cm, convertido para m;
-- `Vazao`: vazão, em m³/s;
-- `Chuva`: chuva, em mm.
+Do XML retornado, o modelo usa três campos: `Nivel`, o nível em centímetros, convertido para metros; `Vazao`, a vazão em m³/s; e `Chuva`, a precipitação em milímetros.
 
 As leituras chegam a cada 15 min e costumam atrasar. Por isso cada busca incremental relê uma janela de sobreposição de 6 h (`settings.CACHE_OVERLAP_HOURS`). O backfill pede no máximo 30 dias por chamada.
 
@@ -55,26 +52,19 @@ Os metadados das estações (coordenadas, áreas de drenagem, cotas de inundaç�
 
 ### Peculiaridades dos dados que moldam o modelo
 
-- **O Guaíba não tem medição de vazão.** Porto Alegre só informa nível, então a saída para a Lagoa dos Patos precisa ser inferida. Esse é o núcleo do método (ver [METODOLOGIA.md](METODOLOGIA.md#3-vazão-de-saída-sem-medição-de-vazão)). As únicas medições independentes de vazão no Guaíba são campanhas pontuais de ADCP da UFRGS (ver [DISCUSSÃO §4.3](DISCUSSAO.md#43-nenhuma-medição-de-vazão-no-guaíba)).
-- **A régua do Gasômetro começa em 03/05/2024.** Foi instalada como régua de emergência durante a cheia de maio/2024, depois que a régua histórica do Cais Mauá falhou perto do pico. O registro de calibração começa, portanto, no meio do evento.
-- **Os datums das réguas são diferentes.**
-  - O recorde oficial da cheia de 2024 (5,37 m em 05/05/2024 [Medeiros 2025]) se refere à régua histórica do Cais Mauá (C6). A série de telemetria do Gasômetro usada aqui chega a 4,17 m (05/05/2024, 05h30).
-  - As duas réguas não estão no mesmo datum; a relação entre elas no pico é analisada em [Germano 2024]. O offset de +0,44 m medido em nível normal não concilia os dois picos e cresce durante as cheias (ver [DISCUSSÃO §4.4](DISCUSSAO.md#44-duas-réguas-dois-datums)).
-  - Todos os níveis do modelo estão no datum da telemetria do Gasômetro.
-- **Rio Pardo, a estação de entrada do Jacuí, fica muda com frequência.** Tem 41% de cobertura de vazão e ficou 41 h sem transmitir durante a cheia de julho/2026. O Jacuí drena cerca de 85% da bacia, então um Rio Pardo mudo faz o modelo subestimar a entrada. O v4 roteia Cachoeira do Sul para contornar isso.
-- **Lajeado transmite nível continuamente, mas vazão raramente** (7% das horas). O Taquari é o segundo maior afluente, e essa lacuna é uma das principais fontes de erro de entrada no v1–v3.
-- **Controle de qualidade.** O `model/preprocess.py`:
-  - descarta saltos de nível acima de 2 m/h (picos espúrios);
-  - descarta valores idênticos mantidos por 12 h ou mais (sensor travado);
-  - interpola lacunas de até 6 h (12 h nas estações marcadas como `sparse`) e deixa vazias as lacunas maiores.
+A característica mais determinante dos dados é uma ausência: o Guaíba não tem medição contínua de vazão. Porto Alegre informa apenas nível, e a vazão que segue para a Lagoa dos Patos precisa, por isso, ser inferida, o que constitui o núcleo do método descrito na [METODOLOGIA](METODOLOGIA.md#3-vazão-de-saída-sem-medição-de-vazão). As únicas medições independentes de vazão no Guaíba vêm de campanhas pontuais de ADCP realizadas pela UFRGS, discutidas na [DISCUSSÃO, §4.3](DISCUSSAO.md#43-nenhuma-medição-de-vazão-no-guaíba).
+
+A régua do Gasômetro, que serve de alvo ao modelo, só começa a registrar em 3 de maio de 2024. Ela foi instalada como régua de emergência durante a cheia daquele mês, depois que a régua histórica do Cais Mauá deixou de funcionar perto do pico, e o registro de calibração começa, portanto, no meio do maior evento da série. As duas réguas tampouco compartilham o datum. O recorde oficial de 2024, 5,37 m em 5 de maio [Medeiros 2025], refere-se ao Cais Mauá (C6), enquanto a telemetria do Gasômetro usada aqui atinge 4,17 m às 5h30 do mesmo dia. A relação entre as duas no pico é objeto de estudo específico [Germano 2024], e o deslocamento de +0,44 m medido em nível normal não só deixa de conciliar os dois picos como cresce durante as cheias ([DISCUSSÃO, §4.4](DISCUSSAO.md#44-duas-réguas-dois-datums)). Todos os níveis do modelo estão no datum da telemetria do Gasômetro.
+
+Do lado da entrada, as duas estações mais importantes são também as menos confiáveis. Rio Pardo, que representa o Jacuí, tem dados de vazão em 41% das horas e ficou 41 horas sem transmitir durante a cheia de julho de 2026; como o Jacuí drena cerca de 85% da bacia, cada silêncio dessa estação leva o modelo a subestimar a entrada, e foi para contornar o problema que o v4 passou a rotear a vazão de Cachoeira do Sul. Lajeado, no Taquari, transmite nível de forma contínua, mas vazão em apenas 7% das horas, lacuna que figura entre as principais fontes de erro de entrada nas versões v1 a v3, dado que o Taquari é o segundo maior afluente e o que define os picos.
+
+O controle de qualidade aplicado pelo `model/preprocess.py` procura separar falhas de sensor de variações reais. Saltos de nível superiores a 2 m/h são tratados como picos espúrios e descartados, assim como valores idênticos mantidos por 12 horas ou mais, padrão típico de sensor travado. Lacunas de até seis horas são preenchidas por interpolação temporal (doze horas nas estações marcadas como `sparse`), e as lacunas maiores permanecem vazias, por decisão deliberada de não inventar dados onde a série não os tem.
 
 ## 2. DEM Copernicus GLO-30
 
 Dois tiles cobrem o Guaíba e o delta do Jacuí: `Copernicus_DSM_COG_10_S30_00_W052_00_DEM` e `Copernicus_DSM_COG_10_S31_00_W052_00_DEM`. Eles são baixados do bucket público `https://copernicus-dem-30m.s3.amazonaws.com`, sem credenciais.
 
-- **Resolução:** 1 segundo de arco, cerca de 30 m.
-- **É um modelo de superfície (DSM), não de terreno.** Prédios e copas de árvore contam como chão. Por isso a inundação urbana é subestimada, e o mapa de inundação deve ser lido como ilustrativo (ver [METODOLOGIA §6](METODOLOGIA.md#63-ressalvas)).
-- **Datum vertical:** EGM2008. O modelo não converte para o datum da régua. Em vez disso, ancora o DEM na régua casando a área conhecida do Guaíba em nível normal: 470 km² a cerca de 0,9 m na régua do Gasômetro.
+O DEM tem resolução de 1 segundo de arco, cerca de 30 m, e é um modelo de superfície (DSM), não de terreno: prédios e copas de árvore contam como chão. Isso faz o mapa subestimar a inundação nas áreas urbanas e é a razão pela qual ele deve ser lido como ilustrativo ([METODOLOGIA §6.3](METODOLOGIA.md#63-ressalvas)). O datum vertical do produto é o EGM2008, e o modelo não o converte para o datum da régua; em vez disso, ancora o DEM na régua fazendo coincidir a área conhecida do Guaíba em nível normal, 470 km², com o nível de cerca de 0,9 m no Gasômetro.
 
 Produtos derivados, regenerados localmente:
 
