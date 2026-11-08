@@ -1,4 +1,6 @@
 # Registro de estacoes da Bacia do Guaiba (fonte: nivelguaiba.com.br + ANA telemetria)
+# drainage_km2: area de drenagem do inventario da ANA (ServiceANA, HidroInventario,
+# consultado em 08/11/2026). Metadado; nao entra no calculo do modelo.
 # role: inflow (afluente que entra no Guaiba), target (regua do Guaiba em POA),
 #       upstream (indicador antecipado, nao soma no balanco)
 # river_group: jacui | taquari | cai | sinos | gravatai | guaiba
@@ -12,7 +14,7 @@ stations:
     has_vazao: true
     cota_inundacao_m: 12.50
     sparse: true          # linhas ~horarias ou menos; interpolar
-    drainage_km2: 71000
+    drainage_km2: 38700
 
   - code: "85642000"
     name: "Cachoeira do Sul"
@@ -22,7 +24,7 @@ stations:
     role: "upstream"
     has_vazao: true
     cota_inundacao_m: 18.00
-    drainage_km2: 57000
+    drainage_km2: 27300
 
   - code: "85400000"
     name: "Dona Francisca"
@@ -32,7 +34,7 @@ stations:
     role: "upstream"
     has_vazao: true
     cota_inundacao_m: 7.50
-    drainage_km2: 40000
+    drainage_km2: 14000
 
   - code: "86879300"
     name: "Lajeado"
@@ -42,7 +44,7 @@ stations:
     role: "inflow"
     has_vazao: true
     cota_inundacao_m: 19.00
-    drainage_km2: 25000
+    drainage_km2: 22472
 
   - code: "86510000"
     name: "Muçum"
@@ -62,7 +64,7 @@ stations:
     role: "upstream"
     has_vazao: true
     cota_inundacao_m: 12.00
-    drainage_km2: 19000
+    drainage_km2: 19100
 
   - code: "86881000"
     name: "Bom Retiro do Sul"
@@ -72,7 +74,7 @@ stations:
     role: "upstream"
     has_vazao: false
     cota_inundacao_m: 19.00
-    drainage_km2: 26000
+    drainage_km2: 23800
 
   - code: "87170000"
     name: "São Sebastião do Caí"
@@ -82,7 +84,7 @@ stations:
     role: "inflow"
     has_vazao: true
     cota_inundacao_m: 10.00
-    drainage_km2: 4500
+    drainage_km2: 3030
 
   - code: "87165001"
     name: "Feliz"
@@ -92,7 +94,7 @@ stations:
     role: "upstream"
     has_vazao: false
     cota_inundacao_m: 9.00
-    drainage_km2: 3000
+    drainage_km2: 2380
 
   - code: "87382000"
     name: "São Leopoldo"
@@ -102,7 +104,7 @@ stations:
     role: "inflow"
     has_vazao: true
     cota_inundacao_m: 4.50
-    drainage_km2: 3400
+    drainage_km2: 3130
 
   - code: "87376000"
     name: "Taquara"
@@ -112,7 +114,7 @@ stations:
     role: "upstream"
     has_vazao: false
     cota_inundacao_m: 3.30
-    drainage_km2: 570
+    drainage_km2: 2380
 
   - code: "87399000"
     name: "Gravataí"
@@ -122,7 +124,7 @@ stations:
     role: "inflow"
     has_vazao: true
     cota_inundacao_m: 4.50
-    drainage_km2: 2000
+    drainage_km2: 1410
 
   - code: "87450020"
     name: "Porto Alegre (Usina do Gasômetro)"
@@ -133,7 +135,7 @@ stations:
     has_vazao: false
     cota_inundacao_m: 3.00
     cota_alerta_m: 2.50
-    drainage_km2: 84763
+    drainage_km2: 82500
 
   # Regua historica oficial (SEMA-RS). Transmite o proprio nivel, mas nao pode
   # ser base de calibracao: falhou no auge de mai/2024. Le +0,44 m acima do
@@ -153,7 +155,7 @@ stations:
     mirror_of: "87450020"
     own_telemetry: true
     sparse: true
-    drainage_km2: 84763
+    drainage_km2: 82400
 
   # Regua registrada na ANA (oper. Defesa Civil RS) mas SEM transmissao
   # publica — nivel derivado do Gasometro (mesmo corpo d'agua, foz do delta).
@@ -169,4 +171,3 @@ stations:
     cota_alerta_m: 2.50
     datum_offset_m: 0.0
     mirror_of: "87450020"
-    drainage_km2: 84763
