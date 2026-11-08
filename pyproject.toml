@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "waters"
 version = "0.1.0"
-description = "Mass-balance flood model for the Guaiba (Porto Alegre, Brazil): inflow by river, inferred outflow and 72 h stage forecast"
+description = "Modelo de balanço hídrico do Guaíba (Porto Alegre): vazão de entrada por rio, saída inferida e previsão de nível em 72 h"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "João Bahi de Souza" }]

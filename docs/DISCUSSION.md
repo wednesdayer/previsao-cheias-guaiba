@@ -59,7 +59,7 @@ A tabela abaixo reproduz cada versão do modelo como se estivesse rodando ao viv
 | 31/07 00h | 3,04 | 2,81 | 2,81 | 3,14 | |
 | 31/07 10h | 2,58 | 2,56 | 2,54 | 2,89 | IPH (Meirelles): deve ficar abaixo de 3 m |
 
-As fontes das previsões públicas estão em [papers/README.md](../papers/README.md#news-and-bulletins-july-2026).
+As fontes das previsões públicas estão em [papers/README.md](../papers/README.md#notícias-e-boletins-julho-de-2026).
 
 O que a reprodução mostra:
 
@@ -75,7 +75,7 @@ O que a reprodução mostra:
 
 ### 2.1 A extrapolação de crista dispara na subida
 
-A previsão precisa estimar até onde cada afluente vai subir antes de propagá-lo ([METHODOLOGY §4.1](METHODOLOGY.md#41-crest-extrapolation-project-heuristic)). Ao meio-dia de 22/07, Lajeado ainda subia cerca de 400 m³/s por hora (700 m³/s por hora algumas horas antes). Alimentada com essa taxa, a hipótese de decaimento exponencial projetou uma crista muito acima dos 11.078 m³/s de fato atingidos à 01h de 23/07.
+A previsão precisa estimar até onde cada afluente vai subir antes de propagá-lo ([METHODOLOGY §4.1](METHODOLOGY.md#41-extrapolação-de-crista-heurística-do-projeto)). Ao meio-dia de 22/07, Lajeado ainda subia cerca de 400 m³/s por hora (700 m³/s por hora algumas horas antes). Alimentada com essa taxa, a hipótese de decaimento exponencial projetou uma crista muito acima dos 11.078 m³/s de fato atingidos à 01h de 23/07.
 
 Isso explica a maior parte do erro inicial e toda a volatilidade. Não existe limite físico para a crista extrapolada: nenhuma informação de chuva nem de roteamento de montante a restringe.
 
@@ -94,7 +94,7 @@ O modelo trata o Guaíba como um reservatório de superfície plana. Os dados mo
 - A campanha de ADCP de 05/05/2024, na Usina do Gasômetro, mediu corrente máxima de 4,2 m/s [Toldo 2024].
 - Em junho/2025, o nível no Cais Navegantes ficou cerca de 30 cm acima do Cais Mauá, poucos quilômetros a jusante [IPH 2025].
 
-Um modelo de armazenamento não representa essa declividade da superfície entre o delta e Porto Alegre. É também por causa dela que o mapa de inundação erra cerca de 1,5 m de cota em Eldorado do Sul ([METHODOLOGY §6.3](METHODOLOGY.md#63-caveats)).
+Um modelo de armazenamento não representa essa declividade da superfície entre o delta e Porto Alegre. É também por causa dela que o mapa de inundação erra cerca de 1,5 m de cota em Eldorado do Sul ([METHODOLOGY §6.3](METHODOLOGY.md#63-ressalvas)).
 
 ### 2.4 A curva de saída dá cerca de metade da vazão medida
 
@@ -114,7 +114,7 @@ Por que o balanço fechou mesmo assim na calibração: **a entrada estava subest
 
 Com dois erros que se compensam, os hindcasts parecem aceitáveis. Quando a entrada vem completa, como em julho/2026 com Lajeado transmitindo sem parar, a saída pequena demais faz o nível subir demais. Fora a extrapolação de crista, esta é provavelmente a principal causa estrutural do exagero da §1.
 
-Isso também confirma o problema de identificabilidade ([METHODOLOGY §3.4](METHODOLOGY.md#34-identifiability)) e mostra a saída: ajustar a curva de saída aos pontos do ADCP (§6).
+Isso também confirma o problema de identificabilidade ([METHODOLOGY §3.4](METHODOLOGY.md#34-identificabilidade)) e mostra a saída: ajustar a curva de saída aos pontos do ADCP (§6).
 
 ### 2.5 Picos cortados no fim do horizonte
 
@@ -126,7 +126,7 @@ A calibração usa três eventos, e um deles (maio/2024) está muito fora da fai
 
 ### 2.7 Estações de entrada com buracos
 
-No registro completo, Lajeado (Taquari) tem vazão em só 7% das horas, e Rio Pardo (Jacuí) em 41% ([DATA.md](DATA.md#data-quirks-that-shape-the-model)). Cada lacuna tira silenciosamente um afluente importante da entrada, e a curva de saída compensa durante a calibração.
+No registro completo, Lajeado (Taquari) tem vazão em só 7% das horas, e Rio Pardo (Jacuí) em 41% ([DATA.md](DATA.md#peculiaridades-dos-dados-que-moldam-o-modelo)). Cada lacuna tira silenciosamente um afluente importante da entrada, e a curva de saída compensa durante a calibração.
 
 ## 3. Problemas relatados pelo IPH/UFRGS
 
@@ -211,7 +211,7 @@ Várias escolhas de projeto seguem a metodologia publicada pelo IPH, ou coincide
 
 | IPH/UFRGS | Este modelo |
 |---|---|
-| Correções simples de offset, para que cada previsão comece num nível consistente com a observação mais recente [Medeiros 2025] | Correção de viés calculada nas últimas 24 h, aplicada em rampa para que a previsão comece no nível observado ([METHODOLOGY §4.3](METHODOLOGY.md#43-bias-correction-project-heuristic)) |
+| Correções simples de offset, para que cada previsão comece num nível consistente com a observação mais recente [Medeiros 2025] | Correção de viés calculada nas últimas 24 h, aplicada em rampa para que a previsão comece no nível observado ([METHODOLOGY §4.3](METHODOLOGY.md#43-correção-de-viés-heurística-do-projeto)) |
 | Conjuntos de cenários, incluindo um de referência "zero rainfall and zero wind" [Medeiros 2025] | Três cenários de crista. Sem entrada de chuva, o modelo inteiro equivale ao cenário de referência sem chuva |
 | Contribuição de cada afluente e momento do seu pico: o Taquari define o pico, o Jacuí a duração, e picos sincronizados somariam 0,82 m [Laipelt 2026; Medeiros 2025] | Entrada separada por rio, com tempos de viagem por rio |
 | Cenários de vento para o represamento pela Lagoa dos Patos [Medeiros 2025; Possa 2022] | Não modelado; listado como limitação |
