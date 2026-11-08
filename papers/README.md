@@ -18,6 +18,8 @@ The short keys (e.g. `[Chow 1988]`) are the ones used in [docs/METHODOLOGY.md](.
 
 Rantz vol. 1 (21 MB) and Reboita et al. (36 MB) are open but were left out to keep the repository small. Their links are below.
 
+SHA-256 checksums of the bundled PDFs are in [`SHA256SUMS`](SHA256SUMS) (check with `sha256sum -c SHA256SUMS`). Checksums of the PDFs consulted online but not redistributed are in [DISCUSSION.md §7](../docs/DISCUSSION.md#7-documents-consulted).
+
 ## Methods
 
 | Key | Reference | Access | Used for |

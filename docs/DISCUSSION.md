@@ -12,6 +12,7 @@ Reference keys point to [papers/README.md](../papers/README.md). Levels are in m
 4. [Gaps shared by every model of the Guaíba](#4-gaps-shared-by-every-model-of-the-guaíba)
 5. [Where this model follows the IPH approach](#5-where-this-model-follows-the-iph-approach)
 6. [What would reduce the error](#6-what-would-reduce-the-error)
+7. [Documents consulted](#7-documents-consulted)
 
 ---
 
@@ -66,7 +67,7 @@ Even after the Taquari crest had passed (cut 24/07 00h), v1 still predicted 2.87
 
 ### 2.3 The level-pool assumption
 
-The model treats the Guaíba as a reservoir with a flat surface. During May 2024, ADCP measurements near downtown Porto Alegre recorded velocities of about 4 m/s, and the IPH team describes the event as "predominantly fluvial… with high velocities and well-defined flow direction" [Medeiros 2025]. The ADCP campaign of 05/05/2024 measured a maximum current of 4.2 m/s [Toldo 2024]. In June 2025, the level at Cais Navegantes was about 30 cm higher than at Cais Mauá, a few kilometres downstream [IPH 2025]. A storage model cannot represent this water-surface slope between the delta and Porto Alegre. That slope is also why the inundation map misses by about 1.5 m of stage in Eldorado do Sul ([METHODOLOGY §6.3](METHODOLOGY.md#63-caveats)).
+The model treats the Guaíba as a reservoir with a flat surface. The IPH team describes the May 2024 flood as "predominantly fluvial", with the wave propagating as a riverine flow of high velocity [Medeiros 2025]. The ADCP campaign of 05/05/2024 at the Usina do Gasômetro measured a maximum current of 4.2 m/s [Toldo 2024]. In June 2025, the level at Cais Navegantes was about 30 cm higher than at Cais Mauá, a few kilometres downstream [IPH 2025]. A storage model cannot represent this water-surface slope between the delta and Porto Alegre. That slope is also why the inundation map misses by about 1.5 m of stage in Eldorado do Sul ([METHODOLOGY §6.3](METHODOLOGY.md#63-caveats)).
 
 ### 2.4 The outflow curve gives about half the measured outflow
 
@@ -114,7 +115,7 @@ The IPH/UFRGS team ran the operational forecasts of the Guaíba in May 2024 and,
 
 ### 4.1 Bathymetry from the 1960s
 
-The hydrodynamic models of the IPH describe the bed of the Guaíba and the Patos Lagoon with **Brazilian Navy nautical charts from surveys of 1961–1966** [Medeiros 2025; also Possa 2022; Laipelt 2026]. On the Taquari there was not enough data, and the channel was lowered by about 4 m by hand [Laipelt 2026]. Laipelt et al. state that the results "are depended on the DTM model data and bathymetry accuracy".
+The hydrodynamic models of the IPH describe the bed of the Guaíba and the Patos Lagoon with **Brazilian Navy nautical charts** [Possa 2022; Laipelt 2026]. The operational model of 2024 states that those charts come from **surveys of 1961–1966** [Medeiros 2025]. On the Taquari there was not enough data, and the channel was lowered by about 4 m by hand [Laipelt 2026]. Laipelt et al. state that the results "are depended on the DTM model data and bathymetry accuracy".
 
 The May 2024 flood moved a large amount of sediment, so it is reasonable to ask whether that 60-year-old bathymetry still holds. The evidence so far is mixed and partial:
 
@@ -185,3 +186,38 @@ In rough order of expected gain:
 5. **Add wind** as a predictor of the Patos Lagoon backwater.
 6. **Flag horizon-truncated peaks** and log every live forecast, so the next event can be evaluated without re-running.
 7. **Revisit the topography once post-2024 bathymetry is published.** Use a terrain model without buildings (FABDEM, or ANADEM as in [Laipelt 2026]) for the map.
+
+## 7. Documents consulted
+
+Every PDF read for this discussion, with where it came from and its SHA-256, so anyone can check they are looking at the same file. All files were retrieved on **08 Nov 2026**. The ones bundled in this repository are also listed in [`papers/SHA256SUMS`](../papers/SHA256SUMS); verify with `sha256sum -c SHA256SUMS` from inside `papers/`.
+
+### 7.1 Bundled in `papers/` (open licence)
+
+| Key | Link | Size (bytes) | SHA-256 |
+|---|---|---|---|
+| [Medeiros 2025] | [papers/2025_Medeiros_RBRH_Guaiba_emergency_forecasts.pdf](../papers/2025_Medeiros_RBRH_Guaiba_emergency_forecasts.pdf) · https://doi.org/10.1590/2318-0331.302520250025 | 4,624,444 | `1adeb4b9b373d215b9ec8e29991c4661ffa46a2806ebff7d0be4e6b5695ff212` |
+| [Laipelt 2026] | [papers/2026_Laipelt_HESS_2024_flood_mechanisms.pdf](../papers/2026_Laipelt_HESS_2024_flood_mechanisms.pdf) · https://doi.org/10.5194/hess-30-573-2026 | 14,034,473 | `07456865174e3d2cc0293584fe31973db26aca86201065b92ee7e51047d6858e` |
+| [Collischonn 2025] | [papers/2025_Collischonn_RBRH_2024_disaster.pdf](../papers/2025_Collischonn_RBRH_2024_disaster.pdf) · https://doi.org/10.1590/2318-0331.302520240119 | 6,788,699 | `53f671ed1e0976f84f830aba3868b6f73d57fb0304828b2f107cef4dfb9ade33` |
+| [Possa 2022] | [papers/2022_Possa_RBRH_1941_flood_wind.pdf](../papers/2022_Possa_RBRH_1941_flood_wind.pdf) · https://doi.org/10.1590/2318-0331.272220220028 | 5,003,409 | `ed8b3b5a043d9f3cbadfddfe17bad37607d7819abc9469bd79ea630d6fc7d298` |
+| [Hawker 2022] | [papers/2022_Hawker_FABDEM.pdf](../papers/2022_Hawker_FABDEM.pdf) · https://doi.org/10.1088/1748-9326/ac4d4f | 2,516,007 | `683ac0dd52233a10ddb2293ebe59e1763aacb6def2323af244aac1559be24321` |
+| [Rantz 1982] vol. 2 | [papers/1982_Rantz_WSP2175_vol2.pdf](../papers/1982_Rantz_WSP2175_vol2.pdf) · https://doi.org/10.3133/wsp2175 | 22,486,605 | `18f758d2cd3d5b136db559bbf2fc46dd9e3327a252393823f5518f8ad6f53eb4` |
+| [Yevjevich 1964] | [papers/1964_Yevjevich_WSP1690_flood_routing_bibliography.pdf](../papers/1964_Yevjevich_WSP1690_flood_routing_bibliography.pdf) · https://doi.org/10.3133/wsp1690 | 5,412,959 | `1fcabaaabf06f65d3f67bd646b5b3f257818a316b7178ff4ff81f25bc090762a` |
+
+### 7.2 Consulted online, not redistributed (licence not stated)
+
+| Key | PDF link | Size (bytes) | SHA-256 |
+|---|---|---|---|
+| [Toldo 2024] Vazões no Rio Guaíba durante os picos da enchente de maio de 2024 (PGA POA/UFRGS, 24 Jul 2024) | https://www.ufrgs.br/iph/wp-content/uploads/2024/07/05_Nota-Vazoes-no-Rio-Guaiba-durante-os-picos-da-enchente-de-maio-de-2024.pdf | 209,861 | `41ef47d53725ec6d83b55aa7e69f0161dbbf5ac83cdf7779cc98c2155531d027` |
+| [IPH 2025] Monitoramento ambiental e cheia no Guaíba e Delta do Jacuí em junho de 2025 (IPH/UFRGS and PGA POA, Jul 2025) | https://www.ufrgs.br/iph/wp-content/uploads/2025/07/Nota-Tecnica_Cheia-no-Guaiba-.pdf | 14,972,315 | `3f4b79716ec6816669fc0bd8fb1dab1f08da647913ac641382161041e5a590a7` |
+| [SGB 2024] Levantamento dos níveis das marcas da grande cheia de maio de 2024 no RS (Nota Técnica, 3ª versão, 10 Sep 2024) | https://rigeo.sgb.gov.br/bitstream/doc/24939.5/3/nota_tecnica_levantamento_cheia_2024_v.3.pdf | 4,103,092 | `93364c95e92576068be8800d1d9b14f580f25baa4a21bd36fe5e70bcbf440f50` |
+| Soares, D. M. & Marcuzzo, F. F. N. *Grandes cheias de 2023 e 2024 do rio Taquari: estudo preliminar das áreas inundadas em Encantado e Muçum* (SGB, poster). Read; not cited above | https://rigeo.sgb.gov.br/server/api/core/bitstreams/f620f9f9-1cbb-4b14-8c3c-a8eda53d47c2/content | 2,712,521 | `db0a7ee768afc46a4c047b45aca5a8948e5678a075b55b629d71121f1a64d0d7` |
+
+Web pages (not PDFs) read in full: the three Sul21 articles [Sul21 2026a–c], the IPH news pages [IPH site; IPH 2026], and the state, O Sul, Unisinos and Jornal do Comércio pages on bathymetry. Their links are in [papers/README.md](../papers/README.md).
+
+### 7.3 Tried but not obtained
+
+| Document | Link | What happened |
+|---|---|---|
+| SGB/IPH bulletins of the July 2026 flood (SAH Guaíba, 22, 23, 24, 26, 29 and 30 Jul) | e.g. https://www.sgb.gov.br/sace/boletins/Guaiba/20260723_12-20260723%20-%20115622.pdf | HTTP 404 on 08 Nov 2026; content known only through the press |
+| Paper on rating curves and the 2023/2024 floods (XXVI SBRH) | https://lume.ufrgs.br/bitstream/handle/10183/303638/001299077.pdf | Connection dropped / HTTP 504; not used |
+| Jornal do Comércio, 23/07/2026, "Guaíba pode chegar a 2,70m… diz IPH" | https://www.jornaldocomercio.com/geral/2026/07/1257312-guaiba-pode-chegar-a-270m-em-porto-alegre-no-fim-de-semana-diz-iph.html | Paywall after the first paragraph. The 2.70 m figure (Cais Mauá, IPH) is confirmed by Sul21 [2026c], Rádio Pampa and Serra e Litoral |
