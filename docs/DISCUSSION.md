@@ -62,15 +62,27 @@ The forecast has to guess how high each tributary will go before propagating it 
 
 ### 2.2 Structural overestimation of medium floods
 
-Even after the Taquari crest had passed (cut 24/07 00h), v1 still predicted 2.87 m at Cais Mauá against 2.15 m observed. The hindcasts of June 2024 and June 2025 show the same +0.5 m bias. A likely cause is that the model sends the full Taquari wave into a single 470 km² storage, shifted in time but not attenuated. In reality much of it spreads over the Jacuí delta and its floodplains first. Laipelt et al. [2026] show that the Jacuí floodplains govern the duration of Guaíba floods. A lumped level-pool model calibrated on the extreme May 2024 event has no such buffer for smaller events.
+Even after the Taquari crest had passed (cut 24/07 00h), v1 still predicted 2.87 m at Cais Mauá against 2.15 m observed. The hindcasts of June 2024 and June 2025 show the same +0.5 m bias. Two causes contribute. The main one is the outflow bias in §2.4. The other is that the model sends the full Taquari wave into a single 470 km² storage, shifted in time but not attenuated. In reality much of it spreads over the Jacuí delta and its floodplains first. Laipelt et al. [2026] show that the Jacuí floodplains govern the duration of Guaíba floods. A lumped level-pool model calibrated on the extreme May 2024 event has no such buffer for smaller events.
 
 ### 2.3 The level-pool assumption
 
-The model treats the Guaíba as a reservoir with a flat surface. During May 2024, ADCP measurements near downtown Porto Alegre recorded velocities of about 4 m/s, and the IPH team describes the event as "predominantly fluvial… with high velocities and well-defined flow direction" [Medeiros 2025]. A storage model cannot represent the water-surface slope between the delta and Porto Alegre. That slope is also why the inundation map misses by about 1.5 m of stage in Eldorado do Sul ([METHODOLOGY §6.3](METHODOLOGY.md#63-caveats)).
+The model treats the Guaíba as a reservoir with a flat surface. During May 2024, ADCP measurements near downtown Porto Alegre recorded velocities of about 4 m/s, and the IPH team describes the event as "predominantly fluvial… with high velocities and well-defined flow direction" [Medeiros 2025]. The ADCP campaign of 05/05/2024 measured a maximum current of 4.2 m/s [Toldo 2024]. In June 2025, the level at Cais Navegantes was about 30 cm higher than at Cais Mauá, a few kilometres downstream [IPH 2025]. A storage model cannot represent this water-surface slope between the delta and Porto Alegre. That slope is also why the inundation map misses by about 1.5 m of stage in Eldorado do Sul ([METHODOLOGY §6.3](METHODOLOGY.md#63-caveats)).
 
-### 2.4 An effective, not physical, outflow curve
+### 2.4 The outflow curve gives about half the measured outflow
 
-The rating Qout(h) is fitted to close the water balance, so it absorbs every error in inflow, storage and wind. Its exponent sits at the upper bound (b = 4.0) and the fit RMSE is about 2,000 m³/s. Without an independent discharge measurement in Porto Alegre, storage area and outflow are not separately identifiable ([METHODOLOGY §3.4](METHODOLOGY.md#34-identifiability)).
+The rating Qout(h) is fitted to close the water balance, so it absorbs every error in inflow, storage and wind. Its exponent sits at the upper bound (b = 4.0) and the fit RMSE is about 2,000 m³/s.
+
+There are three ADCP discharge measurements on the Guaíba, made by the PGA POA/UFRGS team [Toldo 2024; IPH 2025]. They are independent of everything the model was fitted on. Each version's curve, evaluated at the Gasômetro telemetry level at the time of each measurement, gives:
+
+| Measurement | Measured (ADCP) | Gasômetro level | v1 | v2 | v3 | v4 |
+|---|---|---|---|---|---|---|
+| 05/05/2024 17h45 (Gasômetro section, corrected for overflow) | 35,736 m³/s | 4.10 m | 16,432 (46 %) | 17,178 (48 %) | 16,635 (47 %) | 6,249 (17 %) |
+| 15/05/2024 09h50 (Ponta do Dionísio) | 22,070 m³/s | 4.02 m | 15,879 (72 %) | 16,599 (75 %) | 16,077 (73 %) | 6,145 (28 %) |
+| 25/06/2025 ~11h50 (Usina do Gasômetro) | 12,941 m³/s | 2.26 m | 6,265 (48 %) | 6,528 (50 %) | 6,361 (49 %) | 3,897 (30 %) |
+
+**The fitted outflow is roughly half of the real outflow at flood stages** (v4 much less). The balance still closed during calibration because the **inflow was underestimated by a similar amount**. The inflow gauges have long gaps (§2.7), and the drainage area downstream of them is not measured at all: Rio Pardo, for example, covers about 71,000 of the 84,763 km² upstream of Porto Alegre. With two compensating errors the hindcasts look acceptable. When the inflow is complete, as in July 2026 when Lajeado was transmitting continuously, the too-small outflow makes the level rise too much. This is probably the main structural cause of the overestimation in §1, beyond the crest extrapolation.
+
+It also confirms the identifiability problem ([METHODOLOGY §3.4](METHODOLOGY.md#34-identifiability)) and shows the way out: fit the outflow curve to the ADCP points (§6).
 
 ### 2.5 Horizon truncation
 
@@ -94,7 +106,9 @@ The IPH/UFRGS team ran the operational forecasts of the Guaíba in May 2024 and,
 - **Sensitivity to the Guaíba's hydraulics.** Changing only Manning's roughness in the Guaíba between 0.025 and 0.045 moves the simulated peak at Cais Mauá by −0.91 to +0.32 m [Laipelt 2026]. That is the physical counterpart of this model's uncertain outflow curve.
 - **Wind.** South-westerly wind over the Patos Lagoon restricts outflow and can raise the Guaíba by up to about 50 cm [Laipelt 2026; Possa 2022]. Medeiros et al. [2025] report forecast misses in June 2024 tied to wind: levels were forecast to fall below the alert level, but they reached 3.22 m.
 - **Interpretation matters as much as the model.** "Signals of rising or falling water levels, in time horizons greater than 72 hours, were interpreted and discussed among the forecasters", with models recalibrated during the event [Medeiros 2025]. The published numbers are model output filtered by expert judgement.
-- **July 2026.** Prof. Fernando Meirelles (IPH) said the rise happened within "uma faixa de incerteza". He said the main difficulty was estimating tributary discharge, because the gauge network damaged in 2024 had not been maintained at several points [Sul21 2026].
+- **The June 2025 flood.** The IPH ran hydrodynamic forecasts for this flood. They used the **old bathymetry**, because the new state survey was not yet available, and reported scenario uncertainty of 10–20 cm. They anticipated the rise, the alert level and the approach to the flood level about 3 days ahead. The IPH saw no anomaly that would suggest the 2024 bed changes had degraded its forecasts [IPH 2025].
+- **Who publishes the forecasts.** The IPH published its own daily Guaíba forecasts on its website in 2024 and during the June 2025 flood. The last one, on 04/07/2025, says it is "a última previsão emitida pela equipe para a cheia de junho de 2025" [IPH site]. There is no IPH-branded forecast on that site for July 2026. Forecasts for the Guaíba are now issued in **SGB bulletins "utilizando as técnicas desenvolvidas no projeto"**, a cooperation agreement between SGB and IPH (TED) that runs to November 2026, with an extension to June 2027 in progress. A joint workshop in September 2026 discussed forecasting procedures, bulletin issuance and "propostas de interpretação e comunicação de resultados" [IPH 2026]. So the IPH did stop publishing forecasts under its own name, but the documented reason is this institutional change. **No source attributes it to overestimation.**
+- **July 2026.** On 31/07/2026, Prof. Fernando Meirelles (IPH) said the Guaíba rose "no tempo esperado" but within "uma banda de incerteza". He said the main difficulty was estimating the discharge of the tributaries, which were falling by then, because the gauge network damaged in 2024 had not been maintained at several points. Measurement "feita ainda longe da Capital" adds to the uncertainty: "Se instalasse [pontos de observação] onde deveria ter, já se poderia saber com maior precisão" [Sul21 2026a].
 
 ## 4. Gaps shared by every model of the Guaíba
 
@@ -106,12 +120,12 @@ The May 2024 flood moved a large amount of sediment, so it is reasonable to ask 
 
 | Source | Finding |
 |---|---|
-| Technical note by Portos RS and IPH/UFRGS, survey of 26 Dec 2024 compared with nautical charts [O Sul 2025] | No generalised siltation in the Guaíba or the Jacuí, but "remoção de sedimentos e exposição do substrato rochoso em alguns trechos". The profile near the Usina do Gasômetro shows erosion. |
+| IPH/UFRGS and PGA POA technical note: dual-beam and side-scan survey of 26 Dec 2024, three profiles compared with the pre-2022 nautical-chart base [IPH 2025; O Sul 2025] | Lowering by erosion of the main channel and thalweg at the Usina do Gasômetro section and in the two Jacuí channels upstream. Sediment removed and bedrock exposed in places (sediment sampling hit rock). No generalised siltation. The IPH recommends "mapeamentos periódicos e mais abrangentes de batimetria". |
 | State government bathymetry, 2025/2026, compared with surveys from 2013 and 2015 at a few control points [Sema 2026] | "não foram identificadas… alterações significativas nos pontos de amostragem". Partial results. |
 | Projeto Guaíba (Unisinos, UFRGS, FEPAM), seismic survey compared with FEPAM 2018 [Unisinos 2026] | "processos localizados de erosão, transporte e deposição de sedimentos… especialmente na região do Delta do Jacuí e em corredores preferenciais de fluxo". Extent and link to 2024 still under evaluation; final synthesis due July 2028. |
 | Sand bank between the Centro Histórico and Eldorado do Sul [Nova ilha] | Already on maps from the 1961–1964 surveys; grew after May 2024 to about 1.4 km × 250 m. The state government says it does not affect floods. |
 
-In short, there is no evidence of large-scale siltation. There is evidence of **local erosion near the Gasômetro and deposition in the delta**, which are exactly the areas that control the stage–discharge relation at the gauge this model uses. The reference bathymetry predates both the 2024 flood and these changes.
+In short, there is no evidence of large-scale siltation. There is evidence of **erosion of the channel at the Gasômetro section and in the Jacuí channels, and of deposition in parts of the delta**. Those are exactly the areas that control the stage–discharge relation at the gauge this model uses. The bathymetry in the hydrodynamic models predates both the 2024 flood and these changes. The IPH notes that its June 2025 forecasts, run on the old bathymetry, did not lose accuracy [IPH 2025]. The deepened channel is therefore not a demonstrated source of forecast error, but it remains unrepresented.
 
 **How this affects this model.** It uses no bathymetry directly. Its outflow curve is fitted on data from May 2024 onwards, so it already reflects the post-flood channel, but it mixes the geometry during the flood with the geometry after it. If the bed near the Gasômetro keeps evolving, the curve will drift, and so will the datum offset between the two gauges (§4.4). Its stage–area curve and inundation map come from a 2011–2015 surface model (GLO-30), which predates the flood as well.
 
@@ -121,7 +135,13 @@ Every model of the Guaíba takes tributary discharge from ANA/SGB rating curves.
 
 ### 4.3 No discharge measurement on the Guaíba
 
-Outflow to the Patos Lagoon is not measured routinely. The ADCP campaigns of May 2024 near the Cais Mauá (Ponta da Cadeia and Ponta do Dionísio sections; Andrade et al. 2024, as cited in [Laipelt 2026]) are the only independent discharge data for the Guaíba. They are what would break the area–outflow trade-off in this model (§2.4).
+Outflow to the Patos Lagoon is not measured routinely. The PGA POA/UFRGS ADCP campaigns are the only independent discharge data for the Guaíba:
+
+- 35,736 m³/s on 05/05/2024 (Usina do Gasômetro section, corrected for overflow across the Ilha da Pintada);
+- 22,070 m³/s on 15/05/2024 (Ponta do Dionísio);
+- 12,941 m³/s on 25/06/2025 (Usina do Gasômetro).
+
+[Toldo 2024; IPH 2025; also used by Laipelt 2026.] For reference, normal outflow is 1,000–2,000 m³/s, and the IPH estimates peak discharge at 14.9, 16.0, 28.2 and 15.1 thousand m³/s for the floods of Sept 2023, Nov 2023, May 2024 and June 2025 [IPH 2025]. These measurements are what exposed this model's outflow bias (§2.4).
 
 ### 4.4 Two gauges, two datums
 
@@ -150,17 +170,17 @@ Several design choices in this project follow, or match, the published IPH metho
 | Scenario ensembles, including a "zero rainfall and zero wind" benchmark [Medeiros 2025] | Three crest scenarios; with no rainfall input, the whole model is the analogue of the zero-rainfall benchmark |
 | Contribution of each tributary and the timing of its peak; Taquari sets the peak, Jacuí the duration; synchronised peaks would add 0.82 m [Laipelt 2026; Medeiros 2025] | Inflow split by river, with per-river travel times |
 | Wind scenarios for the Patos Lagoon backwater [Medeiros 2025; Possa 2022] | Not modelled: listed as a limitation |
-| ADCP measurements as independent validation [Laipelt 2026] | Identified as the missing data to make outflow identifiable |
+| ADCP measurements as independent validation [Laipelt 2026; Toldo 2024] | Used here to test the outflow curve (§2.4); next step is to fit it to them |
 
-The **zero-rainfall comparison** is the most telling. In the IPH evaluation of May 2024, zero-rainfall forecasts *underestimated* levels beyond 24 h, because new rain kept adding water [Medeiros 2025]. This model, which is effectively zero-rainfall, *overestimated* in July 2026. So its error does not come from missing rain. It comes from the crest extrapolation and the missing delta storage (§2.1–2.2).
+The **zero-rainfall comparison** is the most telling. In the IPH evaluation of May 2024, zero-rainfall forecasts *underestimated* levels beyond 24 h, because new rain kept adding water [Medeiros 2025]. This model, which is effectively zero-rainfall, *overestimated* in July 2026. So its error does not come from missing rain. It comes from the crest extrapolation, an outflow curve about half the measured value, and the missing delta storage (§2.1, §2.4, §2.2).
 
 ## 6. What would reduce the error
 
 In rough order of expected gain:
 
-1. **Cap or replace the crest extrapolation.** Use upstream gauges (Muçum, Encantado) or an MGB-like rainfall–runoff model to bound how high a tributary can still rise.
-2. **Add delta / floodplain storage between the tributaries and the Guaíba**, for example one more storage element for the Jacuí delta.
-3. **Calibrate the outflow against independent discharge** (the 2024 ADCP campaigns) instead of only closing the balance.
+1. **Anchor the outflow curve to the ADCP measurements** (§2.4, §4.3), for example as a constrained fit or a penalty term, and let the inflow side absorb the remaining imbalance as an ungauged-area factor. This addresses the largest structural error found.
+2. **Cap or replace the crest extrapolation.** Use upstream gauges (Muçum, Encantado) or an MGB-like rainfall–runoff model to bound how high a tributary can still rise.
+3. **Add delta / floodplain storage between the tributaries and the Guaíba**, for example one more storage element for the Jacuí delta.
 4. **Use a stage-dependent datum offset** between Gasômetro and Cais Mauá.
 5. **Add wind** as a predictor of the Patos Lagoon backwater.
 6. **Flag horizon-truncated peaks** and log every live forecast, so the next event can be evaluated without re-running.
