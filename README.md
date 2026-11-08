@@ -51,7 +51,7 @@ O repositório inclui um dashboard em Streamlit, um mapa de inundação interati
 2. **Saída sem medição.** Porto Alegre só mede nível. A saída é escrita como uma curva de descarga em potência, ajustada para fechar o balanço de reservatório em dois anos de dados. Uma perda robusta de Huber evita que o empilhamento pelo vento e o remanso da Lagoa dos Patos dominem o ajuste.
 3. **Previsão.** Rios que ainda estão subindo têm a crista extrapolada (taxa de subida com decaimento exponencial, em três cenários). O balanço é integrado por RK4, e o erro do modelo nas últimas 24 h entra como correção de viés em rampa.
 
-O método completo, cada hipótese e a referência por trás de cada etapa estão em **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**. As falhas, os problemas em aberto e a comparação com as previsões oficiais estão em **[docs/DISCUSSION.md](docs/DISCUSSION.md)**. As fontes de dados e suas peculiaridades estão em **[docs/DATA.md](docs/DATA.md)**. Os artigos estão em **[papers/](papers/)**.
+O método completo, cada hipótese e a referência por trás de cada etapa estão em **[docs/METODOLOGIA.md](docs/METODOLOGIA.md)**. As falhas, os problemas em aberto e a comparação com as previsões oficiais estão em **[docs/DISCUSSAO.md](docs/DISCUSSAO.md)**. As fontes de dados e suas peculiaridades estão em **[docs/DADOS.md](docs/DADOS.md)**. Os artigos estão em **[papers/](papers/)**.
 
 ### Resultados
 
@@ -78,7 +78,7 @@ O que aprendi no caminho:
 - **Uma curva cota-área melhor não melhorou o nível do pico.** No pico, dh/dt = 0, então A(h) sai do balanço e o pico fica definido por Qin = Qout(h). Como a saída é reajustada para cada hipótese de área, área e saída se compensam: sem uma medição independente de vazão em Porto Alegre, elas não são identificáveis separadamente. A curva do DEM só melhora o tempo.
 - **O roteamento Muskingum funciona por trecho, mas piora o conjunto.** Ele reproduz bem a onda do Taquari (Muçum → Encantado, NSE 0,88; Encantado → Lajeado, NSE 0,81). Só que rotear apenas a estação de montante perde a contribuição lateral até a foz, e a curva de saída absorve o déficit. No Jacuí, a barragem (UHE Dona Francisca) quebra o roteamento simples (NSE 0,30–0,49).
 - **Fechar o balanço não basta para acertar a saída.** Três medições de vazão por ADCP no Guaíba (UFRGS, 2024–2025) mostram que a curva de saída ajustada dá só cerca de **metade** da vazão real em cotas de cheia. O balanço fechou na calibração porque a entrada estava subestimada numa proporção parecida, por lacunas nas estações e área não monitorada. Os dois erros se cancelam no hindcast e se separam numa cheia real.
-- **A previsão de pico oscila enquanto os rios sobem, e exagera.** O modelo foi usado ao vivo na cheia do Taquari de julho/2026. Com 2–3 dias de antecedência, todas as versões previram 4,4–5,0 m no Cais Mauá; o pico real foi 2,15 m. As previsões só convergiram depois que a crista de montante passou. As previsões oficiais do SGB/IPH também exageraram (2,50–2,70 m, depois de cenários acima de 3 m), mas bem menos. A comparação, os problemas relatados pelo próprio IPH (estações danificadas, curvas-chave extrapoladas, batimetria dos anos 1960) e os próximos passos estão em **[docs/DISCUSSION.md](docs/DISCUSSION.md)**.
+- **A previsão de pico oscila enquanto os rios sobem, e exagera.** O modelo foi usado ao vivo na cheia do Taquari de julho/2026. Com 2–3 dias de antecedência, todas as versões previram 4,4–5,0 m no Cais Mauá; o pico real foi 2,15 m. As previsões só convergiram depois que a crista de montante passou. As previsões oficiais do SGB/IPH também exageraram (2,50–2,70 m, depois de cenários acima de 3 m), mas bem menos. A comparação, os problemas relatados pelo próprio IPH (estações danificadas, curvas-chave extrapoladas, batimetria dos anos 1960) e os próximos passos estão em **[docs/DISCUSSAO.md](docs/DISCUSSAO.md)**.
 
 ### Como rodar
 
@@ -109,7 +109,7 @@ src/waters/
   dashboard/     app Streamlit e componentes
 scripts/         backfill, calibrate, build_area_curve, build_inundation, replay_event
 tests/           testes unitários com dados sintéticos e uma amostra real do XML da ANA
-docs/            METHODOLOGY.md, DATA.md, DISCUSSION.md, results/, imagens
+docs/            METODOLOGIA.md, DADOS.md, DISCUSSAO.md, resultados/, imagens
 papers/          referências (PDFs de acesso aberto + bibliografia + SHA256SUMS)
 ```
 
@@ -117,12 +117,12 @@ papers/          referências (PDFs de acesso aberto + bibliografia + SHA256SUMS
 
 - Só propaga a água já observada nos rios, sem previsão de chuva; o horizonte útil é de 48–72 h.
 - O empilhamento pelo vento e o remanso da Lagoa dos Patos não são modelados. Podem somar dezenas de centímetros em Porto Alegre e acabam nos resíduos da curva de saída e na correção de viés.
-- A entrada fica subestimada sempre que Rio Pardo (Jacuí) ou Lajeado (Taquari) param de transmitir vazão, o que é frequente (ver [DATA.md](docs/DATA.md#peculiaridades-dos-dados-que-moldam-o-modelo)).
+- A entrada fica subestimada sempre que Rio Pardo (Jacuí) ou Lajeado (Taquari) param de transmitir vazão, o que é frequente (ver [DADOS.md](docs/DADOS.md#peculiaridades-dos-dados-que-moldam-o-modelo)).
 - O mapa de inundação é uma "banheira" estática sobre um modelo de superfície (DSM): subestima a inundação urbana e ignora a declividade do rio.
 
 ### Licença
 
-Código: [MIT](LICENSE). Os artigos de terceiros em `papers/` mantêm as próprias licenças. Os dados pertencem aos seus fornecedores (ver [DATA.md](docs/DATA.md)).
+Código: [MIT](LICENSE). Os artigos de terceiros em `papers/` mantêm as próprias licenças. Os dados pertencem aos seus fornecedores (ver [DADOS.md](docs/DADOS.md)).
 
 ---
 
@@ -138,7 +138,7 @@ The repository includes a Streamlit dashboard, an interactive inundation map, a 
 
 > **This is a personal research project, not an official forecast.** For warnings, follow the Defesa Civil do Rio Grande do Sul.
 
-The detailed documentation is in Portuguese: [methodology](docs/METHODOLOGY.md), [data](docs/DATA.md), [discussion](docs/DISCUSSION.md) (with an English summary at the top) and [references](papers/README.md).
+The detailed documentation is in Portuguese: [methodology](docs/METODOLOGIA.md), [data](docs/DADOS.md), [discussion](docs/DISCUSSAO.md) (with an English summary at the top) and [references](papers/README.md).
 
 ### How it works
 

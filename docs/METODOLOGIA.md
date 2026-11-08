@@ -23,7 +23,7 @@ O Guaíba é um corpo d'água curto e largo, com cerca de 470 km² em nível nor
 Três fatos definem o método:
 
 - **O Guaíba não tem medição de vazão.** Porto Alegre só mede nível, então a saída precisa ser inferida.
-- **A maior parte da água passa antes por rios monitorados.** A telemetria da ANA fornece nível e vazão a cada 15 min na última estação de cada afluente (ver [DATA.md](DATA.md)).
+- **A maior parte da água passa antes por rios monitorados.** A telemetria da ANA fornece nível e vazão a cada 15 min na última estação de cada afluente (ver [DADOS.md](DADOS.md)).
 - **O Guaíba responde devagar.** A área grande faz com que a variação de nível seja a integral, ao longo de dias, do desequilíbrio entre entrada e saída.
 
 O objetivo é prever o nível na régua da Usina do Gasômetro (ANA 87450020) nas próximas 72 h, usando só a água que já foi medida a montante. Não há previsão de chuva; a [§9](#9-relação-com-trabalhos-existentes) compara isso com os sistemas operacionais.
@@ -139,7 +139,7 @@ Invertendo o balanço ajustado, obtém-se a **entrada reconstruída** `F(t) = A�
 
 Sem medição independente de vazão em Porto Alegre, A(h) e Qout(h) **não são identificáveis separadamente**: qualquer mudança na área suposta é compensada pela curva reajustada. A §7 mostra isso na prática.
 
-Para quebrar esse compromisso são necessários dados independentes de saída, como as campanhas de ADCP no Guaíba. Comparada com essas medições, a curva ajustada dá cerca de **metade** da vazão real em cotas de cheia ([DISCUSSION §2.4](DISCUSSION.md#24-a-curva-de-saída-dá-cerca-de-metade-da-vazão-medida)).
+Para quebrar esse compromisso são necessários dados independentes de saída, como as campanhas de ADCP no Guaíba. Comparada com essas medições, a curva ajustada dá cerca de **metade** da vazão real em cotas de cheia ([DISCUSSÃO §2.4](DISCUSSAO.md#24-a-curva-de-saída-dá-cerca-de-metade-da-vazão-medida)).
 
 ## 4. Previsão
 
@@ -225,7 +225,7 @@ O modelo **superestima cheias pequenas**. Na subida de maio/2024, o erro absolut
 
 ### 6.1 Curva cota-área
 
-O `scripts/build_area_curve.py` deriva A(h) do DEM Copernicus GLO-30 (ver [DATA.md](DATA.md#2-dem-copernicus-glo-30)):
+O `scripts/build_area_curve.py` deriva A(h) do DEM Copernicus GLO-30 (ver [DADOS.md](DADOS.md#2-dem-copernicus-glo-30)):
 
 1. Recorta o Guaíba e o delta do Jacuí, parando ao norte da Lagoa dos Patos.
 2. Monta a curva hipsométrica (a área abaixo de cada cota).
@@ -291,7 +291,7 @@ Previsões refeitas com os dados cortados em cada momento da cheia do Taquari de
 | 23/07 12h | 1,37 m | 9.153 | 3,53 m | 3,15 m |
 | 24/07 00h | 1,44 m | 5.631 | 2,74 m | 2,29 m |
 
-**O pico observado no Gasômetro foi 1,53 m** (24/07, por volta das 20h). As previsões feitas com 2–3 dias de antecedência ficaram, portanto, 2–3 m acima. O [DISCUSSION.md](DISCUSSION.md#1-julho-de-2026-um-teste-em-tempo-real) compara as quatro versões com as previsões oficiais do SGB/IPH nas duas ondas do evento.
+**O pico observado no Gasômetro foi 1,53 m** (24/07, por volta das 20h). As previsões feitas com 2–3 dias de antecedência ficaram, portanto, 2–3 m acima. O [DISCUSSAO.md](DISCUSSAO.md#1-julho-de-2026-um-teste-em-tempo-real) compara as quatro versões com as previsões oficiais do SGB/IPH nas duas ondas do evento.
 
 Enquanto o Taquari subia, a extrapolação de crista (§4.1) projetava a subida para a frente. Quando a crista real passou por Lajeado (11.078 m³/s em 23/07 01h), o pico previsto caiu junto. Na prática:
 
@@ -302,12 +302,12 @@ Enquanto o Taquari subia, a extrapolação de crista (§4.1) projetava a subida 
 
 1. **Sem previsão de chuva.** Só a água já observada é propagada; o horizonte útil é de 48–72 h.
 2. **Vento e Lagoa dos Patos não são modelados.** O vento sudoeste represa a saída e pode elevar o Guaíba em até cerca de 50 cm; o nordeste faz o contrário [Laipelt 2026; Possa 2022; Munar 2018]. Neste modelo, esses efeitos acabam nos resíduos da curva de saída e no termo de viés.
-3. **Lacunas nas estações de entrada.** Rio Pardo (Jacuí) tem 41% de cobertura de vazão e Lajeado (Taquari), 7%. O Jacuí drena cerca de 85% da bacia e o Taquari define os picos [Laipelt 2026], então essas lacunas são a principal fonte de erro na entrada (ver [DATA.md](DATA.md#peculiaridades-dos-dados-que-moldam-o-modelo)).
+3. **Lacunas nas estações de entrada.** Rio Pardo (Jacuí) tem 41% de cobertura de vazão e Lajeado (Taquari), 7%. O Jacuí drena cerca de 85% da bacia e o Taquari define os picos [Laipelt 2026], então essas lacunas são a principal fonte de erro na entrada (ver [DADOS.md](DADOS.md#peculiaridades-dos-dados-que-moldam-o-modelo)).
 4. **As vazões vêm de curvas-chave.** As vazões da ANA são extrapoladas em cheias extremas (±10–20%).
 5. **A curva de saída é efetiva, não física,** e dá cerca de metade da vazão medida por ADCP em cotas de cheia (§3.3, §3.4).
 6. **O mapa de inundação é uma banheira estática sobre um modelo de superfície** (§6.3).
 
-Uma discussão completa das falhas, com a comparação com as previsões oficiais e com os problemas relatados pelo IPH/UFRGS, está em [DISCUSSION.md](DISCUSSION.md).
+Uma discussão completa das falhas, com a comparação com as previsões oficiais e com os problemas relatados pelo IPH/UFRGS, está em [DISCUSSAO.md](DISCUSSAO.md).
 
 ## 9. Relação com trabalhos existentes
 

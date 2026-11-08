@@ -2,7 +2,7 @@
 
 Cada referência foi conferida numa fonte real: Crossref, resolvedor de DOI, página da editora, USGS Publications Warehouse, Open Library ou página do órgão. Um PDF só é incluído **quando a licença permite redistribuir** (CC BY 4.0 ou domínio público dos EUA). As demais referências aparecem com DOI ou link.
 
-As chaves curtas (por exemplo `[Chow 1988]`) são as usadas em [docs/METHODOLOGY.md](../docs/METHODOLOGY.md) e [docs/DISCUSSION.md](../docs/DISCUSSION.md). Os títulos das obras ficam no idioma original.
+As chaves curtas (por exemplo `[Chow 1988]`) são as usadas em [docs/METODOLOGIA.md](../docs/METODOLOGIA.md) e [docs/DISCUSSAO.md](../docs/DISCUSSAO.md). Os títulos das obras ficam no idioma original.
 
 ## PDFs incluídos
 
@@ -18,7 +18,7 @@ As chaves curtas (por exemplo `[Chow 1988]`) são as usadas em [docs/METHODOLOGY
 
 Rantz vol. 1 (21 MB) e Reboita et al. (36 MB) também são abertos, mas ficaram de fora para manter o repositório leve. Os links estão abaixo.
 
-Os checksums SHA-256 dos PDFs incluídos estão em [`SHA256SUMS`](SHA256SUMS); para conferir, rode `sha256sum -c SHA256SUMS`. Os checksums dos PDFs consultados online e não redistribuídos estão na [DISCUSSION.md §7](../docs/DISCUSSION.md#7-documentos-consultados).
+Os checksums SHA-256 dos PDFs incluídos estão em [`SHA256SUMS`](SHA256SUMS); para conferir, rode `sha256sum -c SHA256SUMS`. Os checksums dos PDFs consultados online e não redistribuídos estão na [DISCUSSAO.md §7](../docs/DISCUSSAO.md#7-documentos-consultados).
 
 ## Métodos
 
@@ -71,7 +71,7 @@ Os checksums SHA-256 dos PDFs incluídos estão em [`SHA256SUMS`](SHA256SUMS); p
 
 ## Notícias e boletins, julho de 2026
 
-Os boletins SGB/IPH da cheia de julho/2026 (`sgb.gov.br/sace/boletins/Guaiba/2026072*`) não estavam mais online em 08/11/2026 (HTTP 404); o conteúdo deles só é conhecido pela imprensa. As citações da [DISCUSSION.md](../docs/DISCUSSION.md#1-julho-de-2026-um-teste-em-tempo-real) vêm de:
+Os boletins SGB/IPH da cheia de julho/2026 (`sgb.gov.br/sace/boletins/Guaiba/2026072*`) não estavam mais online em 08/11/2026 (HTTP 404); o conteúdo deles só é conhecido pela imprensa. As citações da [DISCUSSAO.md](../docs/DISCUSSAO.md#1-julho-de-2026-um-teste-em-tempo-real) vêm de:
 
 | Data | Veículo | Conteúdo | URL |
 |---|---|---|---|

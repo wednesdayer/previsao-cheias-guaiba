@@ -7,7 +7,7 @@ datum) e o nivel observado no corte.
 
 Uso:
   python scripts/replay_event.py --start "2026-07-21 12:00" --end "2026-07-25 00:00" \
-      --step-hours 6 --offset 0.44 --out docs/results/replay_2026-07.csv
+      --step-hours 6 --offset 0.44 --out docs/resultados/reproducao_2026-07_cais-maua.csv
   python scripts/replay_event.py --at "2026-07-22 12:00" "2026-07-23 10:00"
 """
 
