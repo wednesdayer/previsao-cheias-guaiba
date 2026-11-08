@@ -18,7 +18,7 @@ The short keys (e.g. `[Chow 1988]`) are the ones used in [docs/METHODOLOGY.md](.
 
 Rantz vol. 1 (21 MB) and Reboita et al. (36 MB) are open but were left out to keep the repository small. Their links are below.
 
-SHA-256 checksums of the bundled PDFs are in [`SHA256SUMS`](SHA256SUMS) (check with `sha256sum -c SHA256SUMS`). Checksums of the PDFs consulted online but not redistributed are in [DISCUSSION.md §7](../docs/DISCUSSION.md#7-documents-consulted).
+SHA-256 checksums of the bundled PDFs are in [`SHA256SUMS`](SHA256SUMS) (check with `sha256sum -c SHA256SUMS`). Checksums of the PDFs consulted online but not redistributed are in [DISCUSSION.md §7](../docs/DISCUSSION.md#7-documentos-consultados).
 
 ## Methods
 
@@ -71,7 +71,7 @@ SHA-256 checksums of the bundled PDFs are in [`SHA256SUMS`](SHA256SUMS) (check w
 
 ## News and bulletins, July 2026
 
-The SGB/IPH bulletins of the July 2026 flood (`sgb.gov.br/sace/boletins/Guaiba/2026072*`) were no longer online on 08 Nov 2026 (HTTP 404). Their content is known only through the press. Quotes in [DISCUSSION.md](../docs/DISCUSSION.md#1-july-2026-a-real-time-test) come from:
+The SGB/IPH bulletins of the July 2026 flood (`sgb.gov.br/sace/boletins/Guaiba/2026072*`) were no longer online on 08 Nov 2026 (HTTP 404). Their content is known only through the press. Quotes in [DISCUSSION.md](../docs/DISCUSSION.md#1-julho-de-2026-um-teste-em-tempo-real) come from:
 
 | Date | Outlet | Content | URL |
 |---|---|---|---|

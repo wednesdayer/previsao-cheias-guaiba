@@ -232,7 +232,7 @@ Forecasts re-run with data cut at each moment of the July 2026 Taquari flood:
 | 23/07 12h | 1.37 m | 9,153 | 3.53 m | 3.15 m |
 | 24/07 00h | 1.44 m | 5,631 | 2.74 m | 2.29 m |
 
-**The observed peak at the Gasômetro was 1.53 m** (24/07, about 20h). The forecasts made 2–3 days ahead were therefore 2–3 m too high. [DISCUSSION.md](DISCUSSION.md#1-july-2026-a-real-time-test) compares all four versions with the official SGB/IPH forecasts over both waves of the event.
+**The observed peak at the Gasômetro was 1.53 m** (24/07, about 20h). The forecasts made 2–3 days ahead were therefore 2–3 m too high. [DISCUSSION.md](DISCUSSION.md#1-julho-de-2026-um-teste-em-tempo-real) compares all four versions with the official SGB/IPH forecasts over both waves of the event.
 
 While the Taquari was rising, crest extrapolation (§4.1) projected it upward. When the real crest passed Lajeado (11,078 m³/s on 23/07 01h), the predicted peak fell with it. Practical reading:
 
