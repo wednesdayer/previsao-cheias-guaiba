@@ -1,0 +1,172 @@
+# Registro de estacoes da Bacia do Guaiba (fonte: nivelguaiba.com.br + ANA telemetria)
+# role: inflow (afluente que entra no Guaiba), target (regua do Guaiba em POA),
+#       upstream (indicador antecipado, nao soma no balanco)
+# river_group: jacui | taquari | cai | sinos | gravatai | guaiba
+stations:
+  - code: "85900000"
+    name: "Rio Pardo"
+    slug: "rio-pardo"
+    river: "Jacuí"
+    river_group: "jacui"
+    role: "inflow"
+    has_vazao: true
+    cota_inundacao_m: 12.50
+    sparse: true          # linhas ~horarias ou menos; interpolar
+    drainage_km2: 71000
+
+  - code: "85642000"
+    name: "Cachoeira do Sul"
+    slug: "cachoeira-do-sul"
+    river: "Jacuí"
+    river_group: "jacui"
+    role: "upstream"
+    has_vazao: true
+    cota_inundacao_m: 18.00
+    drainage_km2: 57000
+
+  - code: "85400000"
+    name: "Dona Francisca"
+    slug: "dona-francisca"
+    river: "Jacuí"
+    river_group: "jacui"
+    role: "upstream"
+    has_vazao: true
+    cota_inundacao_m: 7.50
+    drainage_km2: 40000
+
+  - code: "86879300"
+    name: "Lajeado"
+    slug: "lajeado"
+    river: "Taquari"
+    river_group: "taquari"
+    role: "inflow"
+    has_vazao: true
+    cota_inundacao_m: 19.00
+    drainage_km2: 25000
+
+  - code: "86510000"
+    name: "Muçum"
+    slug: "mucum"
+    river: "Alto Taquari"
+    river_group: "taquari"
+    role: "upstream"
+    has_vazao: true
+    cota_inundacao_m: 18.00
+    drainage_km2: 16000
+
+  - code: "86720000"
+    name: "Encantado"
+    slug: "encantado"
+    river: "Alto Taquari"
+    river_group: "taquari"
+    role: "upstream"
+    has_vazao: true
+    cota_inundacao_m: 12.00
+    drainage_km2: 19000
+
+  - code: "86881000"
+    name: "Bom Retiro do Sul"
+    slug: "bom-retiro-do-sul"
+    river: "Taquari"
+    river_group: "taquari"
+    role: "upstream"
+    has_vazao: false
+    cota_inundacao_m: 19.00
+    drainage_km2: 26000
+
+  - code: "87170000"
+    name: "São Sebastião do Caí"
+    slug: "sao-sebastiao-do-cai"
+    river: "Caí"
+    river_group: "cai"
+    role: "inflow"
+    has_vazao: true
+    cota_inundacao_m: 10.00
+    drainage_km2: 4500
+
+  - code: "87165001"
+    name: "Feliz"
+    slug: "feliz"
+    river: "Caí"
+    river_group: "cai"
+    role: "upstream"
+    has_vazao: false
+    cota_inundacao_m: 9.00
+    drainage_km2: 3000
+
+  - code: "87382000"
+    name: "São Leopoldo"
+    slug: "sao-leopoldo"
+    river: "Sinos"
+    river_group: "sinos"
+    role: "inflow"
+    has_vazao: true
+    cota_inundacao_m: 4.50
+    drainage_km2: 3400
+
+  - code: "87376000"
+    name: "Taquara"
+    slug: "taquara"
+    river: "Sinos/Paranhana"
+    river_group: "sinos"
+    role: "upstream"
+    has_vazao: false
+    cota_inundacao_m: 3.30
+    drainage_km2: 570
+
+  - code: "87399000"
+    name: "Gravataí"
+    slug: "gravatai"
+    river: "Gravataí"
+    river_group: "gravatai"
+    role: "inflow"
+    has_vazao: true
+    cota_inundacao_m: 4.50
+    drainage_km2: 2000
+
+  - code: "87450020"
+    name: "Porto Alegre (Usina do Gasômetro)"
+    slug: "porto-alegre"
+    river: "Guaíba"
+    river_group: "guaiba"
+    role: "target"
+    has_vazao: false
+    cota_inundacao_m: 3.00
+    cota_alerta_m: 2.50
+    drainage_km2: 84763
+
+  # Regua historica oficial (SEMA-RS). Transmite o proprio nivel, mas nao pode
+  # ser base de calibracao: falhou no auge de mai/2024. Le +0,44 m acima do
+  # Gasometro (diferenca de datum medida, desvio 0,02 m). Cotas = oficiais do
+  # Gasometro (2,55/3,00) + 0,44 para manter consistencia fisica; substituir se
+  # a SEMA publicar limiar proprio da C6.
+  - code: "87450004"
+    name: "Cais Mauá (C6)"
+    slug: "cais-maua"
+    river: "Guaíba"
+    river_group: "guaiba"
+    role: "target"
+    has_vazao: false
+    cota_inundacao_m: 3.44
+    cota_alerta_m: 2.99
+    datum_offset_m: 0.44
+    mirror_of: "87450020"
+    own_telemetry: true
+    sparse: true
+    drainage_km2: 84763
+
+  # Regua registrada na ANA (oper. Defesa Civil RS) mas SEM transmissao
+  # publica — nivel derivado do Gasometro (mesmo corpo d'agua, foz do delta).
+  # Ajustar datum_offset_m e cotas quando houver referencia da DC local.
+  - code: "87450030"
+    name: "Eldorado do Sul (BR-290)"
+    slug: "eldorado-do-sul"
+    river: "Guaíba"
+    river_group: "guaiba"
+    role: "target"
+    has_vazao: false
+    cota_inundacao_m: 3.00
+    cota_alerta_m: 2.50
+    datum_offset_m: 0.0
+    mirror_of: "87450020"
+    drainage_km2: 84763

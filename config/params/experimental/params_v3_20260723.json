@@ -1,0 +1,118 @@
+{
+  "version": "v3",
+  "generated_at": "2026-07-23T14:48:27.903657-03:00",
+  "events": [
+    "jun-2024",
+    "jun-2025",
+    "mai-2024"
+  ],
+  "lags": {
+    "85900000": {
+      "station_code": "85900000",
+      "lag_hours": 12.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 12.0,
+        "jun-2024": 12.0,
+        "jun-2025": 12.0
+      }
+    },
+    "86879300": {
+      "station_code": "86879300",
+      "lag_hours": 18.0,
+      "lag_spread_hours": 6.5,
+      "per_event_hours": {
+        "mai-2024": 18.0,
+        "jun-2024": 31.0,
+        "jun-2025": 18.0
+      }
+    },
+    "87170000": {
+      "station_code": "87170000",
+      "lag_hours": 12.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 12.0,
+        "jun-2024": 12.0,
+        "jun-2025": 12.0
+      }
+    },
+    "87382000": {
+      "station_code": "87382000",
+      "lag_hours": 6.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 6.0,
+        "jun-2024": 6.0,
+        "jun-2025": 6.0
+      }
+    },
+    "87399000": {
+      "station_code": "87399000",
+      "lag_hours": 6.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 6.0,
+        "jun-2024": 6.0,
+        "jun-2025": 6.0
+      }
+    }
+  },
+  "rating": {
+    "a": 3.0346300423461314,
+    "h0": -4.508954636347922,
+    "b": 3.999999999991999,
+    "area_km2": 470.0,
+    "area_stage_factor": 0.0,
+    "rmse_m3s": 2016.9709604753855
+  },
+  "crests": {
+    "85900000": {
+      "station_code": "85900000",
+      "tau_rise_hours": 120.0,
+      "tau_recession_hours": 110.88996429624892
+    },
+    "86879300": {
+      "station_code": "86879300",
+      "tau_rise_hours": 24.775881637852642,
+      "tau_recession_hours": 120.0
+    },
+    "87170000": {
+      "station_code": "87170000",
+      "tau_rise_hours": 24.0,
+      "tau_recession_hours": 120.0
+    },
+    "87382000": {
+      "station_code": "87382000",
+      "tau_rise_hours": 24.0,
+      "tau_recession_hours": 120.0
+    },
+    "87399000": {
+      "station_code": "87399000",
+      "tau_rise_hours": 120.0,
+      "tau_recession_hours": 120.0
+    }
+  },
+  "area_curve": {
+    "levels_m": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0
+    ],
+    "areas_km2": [
+      470.0,
+      486.0,
+      528.0,
+      655.0,
+      772.0,
+      865.0,
+      961.0
+    ],
+    "source": "DEM Copernicus GLO-30 (AWS Open Data); recorte Guaiba+Delta"
+  },
+  "notes": "Calibrado sobre telemetria ANA; rating fecha o balanco sobre a curva cota-area."
+}

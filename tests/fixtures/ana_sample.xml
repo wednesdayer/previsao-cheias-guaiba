@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTable xmlns="http://MRCS/">
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="DadosHidrometereologicos" msdata:UseCurrentLocale="true" />
+  </xs:schema>
+  <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+    <DocumentElement xmlns="">
+      <DadosHidrometereologicos diffgr:id="DadosHidrometereologicos1" msdata:rowOrder="0">
+        <CodEstacao>87450020</CodEstacao>
+        <DataHora>2026-07-22 17:15:00 </DataHora>
+        <Vazao />
+        <Nivel>104.00</Nivel>
+        <Chuva>3.60</Chuva>
+      </DadosHidrometereologicos>
+      <DadosHidrometereologicos diffgr:id="DadosHidrometereologicos2" msdata:rowOrder="1">
+        <CodEstacao>87450020</CodEstacao>
+        <DataHora>2026-07-22 17:00:00 </DataHora>
+        <Vazao>1881.45</Vazao>
+        <Nivel>103.00</Nivel>
+        <Chuva>0.40</Chuva>
+      </DadosHidrometereologicos>
+      <DadosHidrometereologicos diffgr:id="DadosHidrometereologicos3" msdata:rowOrder="2">
+        <CodEstacao>87450020</CodEstacao>
+        <DataHora>invalid-date</DataHora>
+        <Vazao />
+        <Nivel>99.00</Nivel>
+        <Chuva />
+      </DadosHidrometereologicos>
+      <DadosHidrometereologicos diffgr:id="DadosHidrometereologicos4" msdata:rowOrder="3">
+        <CodEstacao>87450020</CodEstacao>
+        <DataHora>2026-07-22 17:00:00 </DataHora>
+        <Vazao />
+        <Nivel>105.00</Nivel>
+        <Chuva />
+      </DadosHidrometereologicos>
+    </DocumentElement>
+  </diffgr:diffgram>
+</DataTable>

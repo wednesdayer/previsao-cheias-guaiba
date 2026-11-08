@@ -1,0 +1,36 @@
+# Rede de roteamento de onda de cheia (Muskingum) — v4.
+#
+# sources: regua-fonte por rio, roteada ate o delta. Escolhidas por serem de
+#   MONTANTE e CONFIAVEIS (cobertura alta), ao contrario das reguas de entrada
+#   intermitentes (Rio Pardo mudo, vazao de Lajeado esparsa).
+# validation_pairs: pares regua-a-regua (montante->jusante) com vazao nos dois,
+#   usados para calibrar/aferir K,X (Nash-Sutcliffe) — a prova de que o
+#   roteamento reproduz a onda observada.
+# coords: lat, lon (ANA HidroInventario) para comprimento haversine dos trechos.
+
+delta_code: "87450020"          # Usina do Gasometro (foz no Guaiba)
+
+sources:
+  taquari: "86720000"           # Encantado (95% cobertura; a jusante de Mucum)
+  jacui: "85642000"             # Cachoeira do Sul/P.Sao Lourenco (95%; conserta Rio Pardo mudo)
+  cai: "87170000"               # Barca do Cai (unica com vazao no Cai)
+  sinos: "87382000"             # Sao Leopoldo
+  gravatai: "87399000"          # Passo das Canoas
+
+validation_pairs:
+  - {upstream: "86510000", downstream: "86720000", river_group: "taquari"}   # Mucum -> Encantado
+  - {upstream: "86720000", downstream: "86879300", river_group: "taquari"}   # Encantado -> Lajeado
+  - {upstream: "85400000", downstream: "85642000", river_group: "jacui"}     # Dona Francisca -> Cachoeira
+  - {upstream: "85642000", downstream: "85900000", river_group: "jacui"}     # Cachoeira -> Rio Pardo
+
+coords:
+  "86510000": [-29.1672, -51.8686]   # Mucum
+  "86720000": [-29.2344, -51.8550]   # Encantado
+  "86879300": [-29.4733, -51.9622]   # Lajeado
+  "85400000": [-29.6269, -53.3528]   # Dona Francisca
+  "85642000": [-30.0078, -53.0156]   # Cachoeira do Sul (Passo Sao Lourenco)
+  "85900000": [-29.9950, -52.3756]   # Rio Pardo
+  "87170000": [-29.5900, -51.3833]   # Barca do Cai
+  "87382000": [-29.7589, -51.1483]   # Sao Leopoldo
+  "87399000": [-29.9644, -50.9778]   # Passo das Canoas (Gravatai)
+  "87450020": [-30.0347, -51.2419]   # Gasometro (delta)

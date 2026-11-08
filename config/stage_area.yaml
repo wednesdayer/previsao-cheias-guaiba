@@ -1,0 +1,14 @@
+# Curva cota-area A(h) do Guaiba DERIVADA DO DEM Copernicus GLO-30.
+# Gerada por scripts/build_area_curve.py. Nivel na regua do Gasometro,
+# ancorado pela area normal 470 km2 no nivel 0.9 m.
+# Recorte: Guaiba + Delta do Jacui (sem Lagoa dos Patos).
+# produced using Copernicus WorldDEM-30 (c) DLR e.V. 2010-2014 and (c) Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved
+source: "DEM Copernicus GLO-30 (AWS Open Data); recorte Guaiba+Delta"
+points:
+  - {nivel_m: 0.0, area_km2: 470}
+  - {nivel_m: 1.0, area_km2: 486}
+  - {nivel_m: 2.0, area_km2: 528}
+  - {nivel_m: 3.0, area_km2: 655}
+  - {nivel_m: 4.0, area_km2: 772}
+  - {nivel_m: 5.0, area_km2: 865}
+  - {nivel_m: 6.0, area_km2: 961}

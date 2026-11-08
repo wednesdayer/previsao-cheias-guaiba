@@ -1,0 +1,175 @@
+{
+  "version": "v4",
+  "generated_at": "2026-07-24T11:12:40.889244-03:00",
+  "events": [
+    "jun-2024",
+    "jun-2025",
+    "mai-2024"
+  ],
+  "lags": {
+    "85900000": {
+      "station_code": "85900000",
+      "lag_hours": 12.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 12.0,
+        "jun-2024": 12.0,
+        "jun-2025": 12.0
+      }
+    },
+    "86879300": {
+      "station_code": "86879300",
+      "lag_hours": 18.0,
+      "lag_spread_hours": 6.5,
+      "per_event_hours": {
+        "mai-2024": 18.0,
+        "jun-2024": 31.0,
+        "jun-2025": 18.0
+      }
+    },
+    "87170000": {
+      "station_code": "87170000",
+      "lag_hours": 12.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 12.0,
+        "jun-2024": 12.0,
+        "jun-2025": 12.0
+      }
+    },
+    "87382000": {
+      "station_code": "87382000",
+      "lag_hours": 6.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 6.0,
+        "jun-2024": 6.0,
+        "jun-2025": 6.0
+      }
+    },
+    "87399000": {
+      "station_code": "87399000",
+      "lag_hours": 6.0,
+      "lag_spread_hours": 0.0,
+      "per_event_hours": {
+        "mai-2024": 6.0,
+        "jun-2024": 6.0,
+        "jun-2025": 6.0
+      }
+    }
+  },
+  "rating": {
+    "a": 86.25239587445213,
+    "h0": -4.577450746464559,
+    "b": 1.982589027339513,
+    "area_km2": 470.0,
+    "area_stage_factor": 0.0,
+    "rmse_m3s": 1737.67558554705
+  },
+  "crests": {
+    "85900000": {
+      "station_code": "85900000",
+      "tau_rise_hours": 120.0,
+      "tau_recession_hours": 110.88996429624892
+    },
+    "86879300": {
+      "station_code": "86879300",
+      "tau_rise_hours": 24.775881637852642,
+      "tau_recession_hours": 120.0
+    },
+    "87170000": {
+      "station_code": "87170000",
+      "tau_rise_hours": 24.0,
+      "tau_recession_hours": 120.0
+    },
+    "87382000": {
+      "station_code": "87382000",
+      "tau_rise_hours": 24.0,
+      "tau_recession_hours": 120.0
+    },
+    "87399000": {
+      "station_code": "87399000",
+      "tau_rise_hours": 120.0,
+      "tau_recession_hours": 120.0
+    },
+    "86720000": {
+      "station_code": "86720000",
+      "tau_rise_hours": 34.83428373726136,
+      "tau_recession_hours": 119.84431494199019
+    },
+    "85642000": {
+      "station_code": "85642000",
+      "tau_rise_hours": 120.0,
+      "tau_recession_hours": 103.29174955903497
+    }
+  },
+  "area_curve": {
+    "levels_m": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0
+    ],
+    "areas_km2": [
+      470.0,
+      486.0,
+      528.0,
+      655.0,
+      772.0,
+      865.0,
+      961.0
+    ],
+    "source": "DEM Copernicus GLO-30 (AWS Open Data); recorte Guaiba+Delta"
+  },
+  "reaches": {
+    "taquari": {
+      "reach_id": "taquari->delta",
+      "source_code": "86720000",
+      "river_group": "taquari",
+      "length_km": 106.9,
+      "k_hours": 21.3,
+      "x": 0.0,
+      "nse": 0.8133059908318024
+    },
+    "jacui": {
+      "reach_id": "jacui->delta",
+      "source_code": "85642000",
+      "river_group": "jacui",
+      "length_km": 170.8,
+      "k_hours": 26.8,
+      "x": 0.479,
+      "nse": 0.49422066088922534
+    },
+    "cai": {
+      "reach_id": "cai->delta",
+      "source_code": "87170000",
+      "river_group": "cai",
+      "length_km": 51.3,
+      "k_hours": 12.0,
+      "x": 0.2,
+      "nse": null
+    },
+    "sinos": {
+      "reach_id": "sinos->delta",
+      "source_code": "87382000",
+      "river_group": "sinos",
+      "length_km": 32.0,
+      "k_hours": 6.0,
+      "x": 0.2,
+      "nse": null
+    },
+    "gravatai": {
+      "reach_id": "gravatai->delta",
+      "source_code": "87399000",
+      "river_group": "gravatai",
+      "length_km": 26.6,
+      "k_hours": 6.0,
+      "x": 0.2,
+      "nse": null
+    }
+  },
+  "notes": "Calibrado sobre telemetria ANA; rating fecha o balanco sobre a curva cota-area."
+}
