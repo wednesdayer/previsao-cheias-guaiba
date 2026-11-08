@@ -50,6 +50,38 @@ Rantz vol. 1 (21 MB) and Reboita et al. (36 MB) are open but were left out to ke
 | [Pontes 2017] | Pontes, P. R. M., Fan, F. M., Fleischmann, A. S., et al. (2017). MGB-IPH model for hydrological and hydraulic simulation of large floodplain river systems coupled with open source GIS. *Environmental Modelling & Software, 94*, 1–20. https://doi.org/10.1016/j.envsoft.2017.03.029 | Paywalled | MGB with hydrodynamic routing |
 | [Reboita 2024] | Reboita, M. S., Mattos, E. V., Capucin, B. C., Souza, D. O. de, & Ferreira, G. W. de S. (2024). A multi-scale analysis of the extreme precipitation in southern Brazil in April/May 2024. *Atmosphere, 15*(9), 1123. https://doi.org/10.3390/atmos15091123 | CC BY 4.0 (not included, 36 MB) | Meteorology of the 2024 event |
 
+## Gauges, rating curves and bathymetry after 2024
+
+| Key | Reference | Used for |
+|---|---|---|
+| [SGB 2024] | Serviço Geológico do Brasil (2024). *Levantamento dos níveis das marcas da grande cheia de maio de 2024 no Rio Grande do Sul* (Nota Técnica, 3ª versão, 10/09/2024). https://rigeo.sgb.gov.br/bitstream/doc/24939.5/3/nota_tecnica_levantamento_cheia_2024_v.3.pdf | Gauges swept away or damaged; Taquari and Caí alert systems "seriamente comprometido"; peak stage at Estrela/Lajeado (86879300) |
+| [O Sul 2025] | O Sul (9 Jul 2025). *Cheias dos rios do Estado não foram agravadas por assoreamento, mostra estudo da UFRGS*. Reports a technical note by Portos RS and IPH/UFRGS (bathymetric survey of 26 Dec 2024). https://www.osul.com.br/cheias-rios-nao-foram-agravadas-por-assoreamento/ | No generalised siltation; local erosion and exposed bedrock near the Gasômetro |
+| [JC 2025] | Jornal do Comércio (9 Jul 2025). *Governo do RS espera resultados da batimetria para decidir sobre desassoreamento do Guaíba*. https://www.jornaldocomercio.com/geral/2025/07/1209772-governo-do-rs-espera-resultados-da-batimetria-para-decidir-sobre-desassoreamento-do-guaiba.html | Scope of the state bathymetric survey (Desassorear RS) |
+| [Sema 2026] | Governo do Estado do RS / Sema (29 Mar 2026). *Governo do Estado apresenta resultados parciais da batimetria nos rios e lagos prioritários do Plano Rio Grande*. https://estado.rs.gov.br/governo-do-estado-apresenta-resultados-parciais-da-batimetria-nos-rios-e-lagos-prioritarios-do-plano-rio-grande | No significant change at the control points compared with 2013/2015 (partial results) |
+| [Unisinos 2026] | Unisinos (22 Jul 2026). *Projeto Guaíba consolida primeiro ano de pesquisas sobre os impactos geológicos das enchentes de 2024*. https://www.unisinos.br/noticias/projeto-guaiba-consolida-primeiro-ano-de-pesquisas-sobre-os-impactos-geologicos-das-enchentes-de-2024/ | Localised erosion and deposition in the Jacuí delta and flow corridors |
+| [Nova ilha] | *Nova ilha no Guaíba*, Wikipedia (pt), revision 72140419 (27 Apr 2026), which compiles state-government and press sources. https://pt.wikipedia.org/wiki/Nova_ilha_no_Gua%C3%ADba | Sand bank grown after May 2024 (secondary source) |
+| Andrade et al. 2024 | ADCP discharge measurements on the Guaíba, 5–31 May 2024, as cited in [Laipelt 2026]. Not read directly. | Only independent discharge data for the Guaíba |
+| Paiva et al. 2025 | Report on rating-curve extrapolation uncertainty (Rio Pardo, Taquari), as cited in [Laipelt 2026]. Not read directly. | Rating uncertainty at the key inflow gauges |
+| Lopes et al. 2018 | Source of the 1961–1966 Navy-chart bathymetry, as cited in [Medeiros 2025]. Not read directly. | Age of the reference bathymetry |
+
+## News and bulletins, July 2026
+
+The SGB/IPH bulletins of the July 2026 flood (`sgb.gov.br/sace/boletins/Guaiba/2026072*`) were no longer online on 08 Nov 2026 (HTTP 404). Their content is known only through the press. Quotes in [DISCUSSION.md](../docs/DISCUSSION.md#1-july-2026-a-real-time-test) come from:
+
+| Date | Outlet | Content | URL |
+|---|---|---|---|
+| 21/07 | Extra Classe / Agência GBC (MetSul) | "perto, ao redor e acima de 2 metros" | https://www.extraclasse.org.br/ambiente/2026/07/nivel-do-guaiba-subira-e-metsul-informa-risco-nas-ilhas-de-porto-alegre/ |
+| 22/07 19h50 | Porto Alegre 24 Horas | SGB + IPH + Catavento: Cais Mauá up to 2.50 m; IPH: 2.50–2.60 m | https://poa24horas.com.br/tempo/2026/07/nivel-do-guaiba-pode-atingir-cota-de-alerta-neste-fim-de-semana-em-porto-alegre/ |
+| 23/07 | Brasil de Fato | SGB/IPH: 2.5 m alert, 3 m not expected | https://www.brasildefato.com.br/2026/07/23/subida-do-guaiba-prevista-para-o-fim-de-semana-poe-areas-ribeirinhas-de-porto-alegre-em-alerta/ |
+| 23/07 15h38 | Jornal do Comércio | "Guaíba pode chegar a 2,70m… diz IPH" | https://www.jornaldocomercio.com/geral/2026/07/1257312-guaiba-pode-chegar-a-270m-em-porto-alegre-no-fim-de-semana-diz-iph.html |
+| 23/07 | Rádio Pampa | IPH/SGB: 2.7 m, 30 cm below the Cais Mauá flood level | https://www.radiopampa.com.br/nivel-do-guaiba-pode-ficar-a-30-centimetros-da-cota-de-inundacao-no-cais-de-porto-alegre-neste-fim-de-semana/ |
+| 24/07 | Agência GBC / RS Notícias (Dmae) | Earlier scenarios above 3 m; floodgates closed | https://agenciagbc.com/2026/07/24/porto-alegre-entra-em-alerta-apos-alta-do-guaiba-e-comportas-podem-ser-fechadas/ |
+| 24/07 | GAZ (MetSul) | 2.3–2.5 m in 48 h | https://www.gaz.com.br/guaiba-alcanca-cota-de-cheia-e-deve-atingir-regiao-das-ilhas-em-porto-alegre/ |
+| 29/07 | Porto Alegre 24 Horas | SGB/IPH: may exceed 3 m; adverse scenario ~3.50 m | https://poa24horas.com.br/noticias/2026/07/modelos-hidrologicos-preveem-transbordamento-do-guaiba-em-porto-alegre-ate-o-final-da-semana/ |
+| 30/07 | Extra Classe / Brasil de Fato | SGB: between 2.60 and 3.00 m at Cais Mauá | https://www.extraclasse.org.br/ambiente/2026/07/nivel-do-guaiba-sobe-e-novos-temporais-chegam-ao-rs-no-sabado/ |
+| 31/07 | Agora RS | Bulletin revised: inundation level no longer expected | https://agorars.com/rs/porto-alegre/guaiba-atinge-cota-alerta-porto-alegre-previsao-inundacao/ |
+| 31/07 | Sul21 [Sul21 2026] | Meirelles (IPH): "faixa de incerteza"; damaged, unmaintained gauge network. The site blocked direct access (HTTP 520); the content comes from search-engine excerpts | https://sul21.com.br/noticias/geral/2026/07/guaiba-deve-ficar-abaixo-da-cota-de-inundacao-mas-falta-de-dados-mantem-incerteza-na-capital/ |
+
 ## Data sources
 
 | Key | Source | Terms |

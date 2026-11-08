@@ -47,7 +47,7 @@ It ships with a Streamlit dashboard, an interactive inundation map, a hindcast v
 2. **Outflow without a gauge.** Porto Alegre measures only stage. The outflow is written as a power-law rating curve and fitted so that the level-pool water balance closes over two years of data. A robust Huber loss keeps wind set-up and backwater from the Lagoa dos Patos from dominating the fit.
 3. **Forecast.** Rivers that are still rising get their crest extrapolated (rise rate decaying exponentially, in three scenarios). The balance is integrated with RK4, and the last 24 h of model error are applied as a ramped bias correction.
 
-The full method, every assumption, and the reference behind each step are in **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**. Data sources and their quirks are in **[docs/DATA.md](docs/DATA.md)**. The papers themselves are in **[papers/](papers/)**.
+The full method, every assumption, and the reference behind each step are in **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**. Failures, open problems and comparison with the official forecasts are in **[docs/DISCUSSION.md](docs/DISCUSSION.md)**. Data sources and their quirks are in **[docs/DATA.md](docs/DATA.md)**. The papers themselves are in **[papers/](papers/)**.
 
 ## Results
 
@@ -73,7 +73,7 @@ Things I learned along the way:
 
 - **A better stage–area curve did not improve the peak level.** At the peak dh/dt = 0, so A(h) drops out of the balance and the peak is set by Qin = Qout(h). Because Qout is re-fitted for each area assumption, area and outflow trade off: without an independent discharge measurement in Porto Alegre they are not separately identifiable. The DEM curve only helps timing.
 - **Muskingum routing works at the reach level but hurts end to end.** It reproduces the Taquari flood wave well (Muçum → Encantado NSE 0.88, Encantado → Lajeado NSE 0.81). Routing only the upstream gauge, however, drops the lateral inflow between that gauge and the river mouth, and the rating curve absorbs the deficit. On the Jacuí, dams (UHE Dona Francisca) break simple channel routing (NSE 0.30–0.49).
-- **The peak forecast is volatile while rivers are still rising.** During the July 2026 Taquari flood the predicted peak fell from 4.56 m to 2.74 m over 36 h as the real crest passed the upstream gauges. The near-term inflow (water already in the rivers) is reliable. The absolute peak becomes reliable only after the upstream crests pass.
+- **The peak forecast is volatile while rivers are still rising, and it overshoots.** The model was used live during the July 2026 Taquari flood. Two to three days ahead, every version predicted 4.4–5.0 m at the Cais Mauá gauge; the real peak was 2.15 m. The forecasts converged only once the upstream crest had passed. The official SGB/IPH forecasts overshot too (2.50–2.70 m, after earlier scenarios above 3 m), but by much less. The comparison, the problems the IPH itself reported (damaged gauges, extrapolated rating curves, 1960s bathymetry) and the next steps are in **[docs/DISCUSSION.md](docs/DISCUSSION.md)**.
 
 ## Quick start
 
@@ -102,9 +102,9 @@ src/waters/
   model/         preprocessing/QC, lags, rating, storage, inflow, routing, crest, balance (RK4), forecast, inundation
   calibrate/     event detection, lag/crest/routing fits, hindcast, CLI
   dashboard/     Streamlit app and components
-scripts/         backfill, calibrate, build_area_curve, build_inundation
+scripts/         backfill, calibrate, build_area_curve, build_inundation, replay_event
 tests/           unit tests with synthetic fixtures and a real ANA XML sample
-docs/            METHODOLOGY.md, DATA.md, images
+docs/            METHODOLOGY.md, DATA.md, DISCUSSION.md, results/, images
 papers/          references (open-access PDFs + bibliography)
 ```
 
