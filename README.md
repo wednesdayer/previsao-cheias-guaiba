@@ -1,6 +1,27 @@
-# Previsão de cheias do Guaíba · Guaíba flood forecast
+<h1 align="center">Previsão de cheias do Guaíba</h1>
 
-[Português](#português) · [English](#english)
+<p align="center">Nível do Guaíba em Porto Alegre nas próximas 72 h, a partir da telemetria pública da ANA.<br>
+<em>Guaíba flood forecast for Porto Alegre, from public ANA telemetry.</em></p>
+
+<p align="center"><a href="#português">Português</a> · <a href="#english">English</a></p>
+
+<p align="center">
+  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-0.1.0-e07a5f?style=for-the-badge">
+  <a href="LICENSE"><img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-3f51b5?style=for-the-badge"></a>
+  <a href="https://github.com/wednesdayer/previsao-cheias-guaiba/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/wednesdayer/previsao-cheias-guaiba?style=for-the-badge&color=e3b341"></a>
+  <img alt="Horizonte 72 h" src="https://img.shields.io/badge/horizonte-72%20h-2e8b57?style=for-the-badge">
+  <img alt="Citações ABNT" src="https://img.shields.io/badge/cita%C3%A7%C3%B5es-ABNT-555555?style=for-the-badge">
+</p>
+
+<p align="center">
+  <img alt="Python 3.12+" src="https://img.shields.io/badge/python-3.12%2B-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img alt="pandas" src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
+  <img alt="SciPy" src="https://img.shields.io/badge/scipy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white">
+  <img alt="Streamlit" src="https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
+  <img alt="Plotly" src="https://img.shields.io/badge/plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white">
+  <img alt="Dados ANA" src="https://img.shields.io/badge/dados-ANA%20telemetria-0077b6?style=for-the-badge">
+  <img alt="Copernicus DEM" src="https://img.shields.io/badge/DEM-Copernicus%20GLO--30-1f6f8b?style=for-the-badge">
+</p>
 
 ![Reprodução da previsão de 12/05/2024 / Replayed forecast of 12 May 2024](docs/img/reproducao_2024-05-12_v1.png)
 
