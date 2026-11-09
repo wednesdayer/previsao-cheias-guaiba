@@ -2,9 +2,9 @@
 
 [Português](#português) · [English](#english)
 
-![Painel de previsão / Forecast panel](docs/img/forecast.png)
+![Reprodução da previsão de 12/05/2024 / Replayed forecast of 12 May 2024](docs/img/reproducao_2024-05-12_v1.png)
 
-*Previsão ao vivo em 08/11/2026: nível observado na régua do Gasômetro (cinza) e três cenários de crista para as próximas 72 h. · Live forecast on 08 Nov 2026: observed stage at the Gasômetro gauge (grey) and three crest scenarios for the next 72 h.*
+*Previsão do v1 refeita como se fosse emitida às 6h de 12/05/2024, só com os dados disponíveis naquele instante: 4,19 m para a madrugada de 15/05, contra 4,06 m observados no Gasômetro às 20h de 14/05, no segundo pico da cheia de 2024. A subida prevista começa cerca de um dia antes da real. É o melhor caso das reproduções, dentro da amostra de calibração; os erros médios e os piores casos estão na [discussão, §2](docs/DISCUSSAO.md#2-reprodução-das-quatro-versões-em-2024-e-2026). · v1 forecast replayed as if issued at 06:00 on 12 May 2024, using only data available then: 4.19 m for early 15 May, against 4.06 m observed at the Gasômetro gauge at 20:00 on 14 May, the second peak of the 2024 flood. The forecast rise starts about a day early. This is the best case among the replays, and it falls inside the calibration sample; average and worst errors are in the discussion, §2.*
 
 ![Mapa de inundação em 4,25 m / Inundation map at 4.25 m](docs/img/flood-map-4.25m.png)
 
