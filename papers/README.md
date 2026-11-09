@@ -18,7 +18,7 @@ Os documentos em [docs/](../docs/) citam pelo sistema autor-data da ABNT NBR 105
 
 O volume 1 de Rantz et al. (1982), com 21 MB, e Reboita et al. (2024), com 36 MB, também são abertos, mas ficaram de fora para manter o repositório leve; as referências estão abaixo.
 
-Os checksums SHA-256 dos PDFs incluídos estão em [`SHA256SUMS`](SHA256SUMS); para conferir, rode `sha256sum -c SHA256SUMS`. Os checksums dos PDFs consultados online e não redistribuídos estão na [DISCUSSAO.md §8](../docs/DISCUSSAO.md#8-documentos-consultados).
+Os checksums SHA-256 dos PDFs incluídos estão em [`SHA256SUMS`](SHA256SUMS); para conferir, rode `sha256sum -c SHA256SUMS`. Os checksums dos PDFs consultados online e não redistribuídos estão na [DISCUSSAO.md §9](../docs/DISCUSSAO.md#9-documentos-consultados).
 
 ## Métodos
 
