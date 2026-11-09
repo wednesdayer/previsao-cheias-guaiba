@@ -115,7 +115,7 @@ papers/          referências (PDFs de acesso aberto + bibliografia + SHA256SUMS
 
 ### Limitações
 
-- Só propaga a água já observada nos rios, sem previsão de chuva; o horizonte útil é de 48–72 h.
+- Só propaga a água já observada nos rios, sem chuva nem vento. Foi uma escolha de partida: ver até onde a água medida pela telemetria basta. A chuva das próprias estações já é baixada e mostra que, em julho de 2026, ela tinha parado horas antes das piores previsões; o erro veio da extrapolação de crista, que presume mais chuva do que houve ([discussão, §2](docs/DISCUSSAO.md#2-a-escolha-de-partir-apenas-da-água-medida-nos-rios)). O horizonte útil é de 48–72 h.
 - O empilhamento pelo vento e o remanso da Lagoa dos Patos não são modelados. Podem somar dezenas de centímetros em Porto Alegre e acabam nos resíduos da curva de saída e na correção de viés.
 - A entrada fica subestimada sempre que Rio Pardo (Jacuí) ou Lajeado (Taquari) param de transmitir vazão, o que é frequente (ver [DADOS.md](docs/DADOS.md#peculiaridades-dos-dados-que-moldam-o-modelo)).
 - O mapa de inundação é uma "banheira" estática sobre um modelo de superfície (DSM): subestima a inundação urbana e ignora a declividade do rio.
@@ -192,7 +192,7 @@ Tests: `pytest --cov=waters --cov-fail-under=80` (74 tests, 81 % coverage).
 
 ### Limitations
 
-- It propagates only water already observed in the rivers, with no rainfall forecast, so the useful horizon is about 48–72 h.
+- It propagates only water already observed in the rivers, with no rain and no wind. That was a deliberate starting point: see how far the gauged river water alone can go. The rain gauges at the same stations are already downloaded, and in July 2026 they show the rain had stopped hours before the worst forecasts; the error came from the crest extrapolation, which implicitly assumes more rain than fell ([discussion, §2](docs/DISCUSSAO.md#2-a-escolha-de-partir-apenas-da-água-medida-nos-rios), in Portuguese). The useful horizon is about 48–72 h.
 - Wind set-up and backwater from the Lagoa dos Patos are not modelled. They can add tens of centimetres in Porto Alegre.
 - Inflow is underestimated whenever the Jacuí or Taquari gauges stop reporting discharge, which happens often.
 - The inundation map is a static "bathtub" on a surface model (DSM), so it underestimates urban flooding.
