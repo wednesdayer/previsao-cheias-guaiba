@@ -1,0 +1,84 @@
+# Próximos passos: um sistema hidrológico-hidrodinâmico nos moldes do IPH
+
+As reproduções da [DISCUSSÃO, §2](DISCUSSAO.md#2-reprodução-das-quatro-versões-em-2024-e-2026) mostram o limite do modelo atual. Um reservatório único, alimentado só pela água já medida nos rios, erra o pico para cima em todos os eventos, e o erro dobra ou triplica fora da amostra de calibração. Parte desse erro tem correção barata, mas a parte que vem da ausência de chuva e de vento só desaparece com outra arquitetura (seção 3 da discussão). A próxima versão, a v5, deve por isso reproduzir a estrutura que o IPH/UFRGS usa para o Guaíba: um modelo hidrológico das bacias afluentes, alimentado por chuva observada e prevista, acoplado a um modelo hidrodinâmico do delta, do Guaíba e da Lagoa dos Patos, forçado pelo vento e construído sobre a batimetria disponível hoje, a das cartas náuticas da Marinha.
+
+Este documento descreve essa arquitetura de referência, a forma como pretendemos reproduzi-la com dados públicos e a ordem em que o trabalho deve ser feito. As citações seguem a ABNT NBR 10520:2023, e as referências, no formato da NBR 6023:2018, estão na [seção 6](#6-referências).
+
+**Sumário**
+
+1. [A arquitetura de referência](#1-a-arquitetura-de-referência)
+2. [A v5 proposta](#2-a-v5-proposta)
+3. [Batimetria: usar a que existe](#3-batimetria-usar-a-que-existe)
+4. [Validação](#4-validação)
+5. [Ordem de execução](#5-ordem-de-execução)
+6. [Referências](#6-referências)
+
+---
+
+## 1. A arquitetura de referência
+
+Há duas configurações publicadas, e elas servem a propósitos distintos. A primeira é o sistema operacional que produziu as previsões diárias durante a cheia de maio de 2024. Segundo Medeiros, Fan e Paiva (2025, p. 6), o processo começava com a análise das observações recentes de nível e chuva, de imagens de satélite e radar e das previsões numéricas de chuva e vento para os quinze dias seguintes. Os dados hidrológicos alimentavam o modelo MGB (Collischonn et al., 2007), calibrado e validado para a Região Hidrográfica do Rio Grande do Sul (Fan et al., 2019 apud Medeiros; Fan; Paiva, 2025, p. 6), e as vazões resultantes entravam num modelo hidrodinâmico unidimensional em regime não permanente, construído no HEC-RAS. O domínio desse modelo começa no Jacuí, atravessa o Guaíba e a Lagoa dos Patos e termina na saída da lagoa em Rio Grande, onde fica a condição de contorno de jusante; Taquari, Caí, Sinos e Gravataí entram como contribuições laterais, e o vento entra para representar o represamento causado pelos ventos do sul (Medeiros; Fan; Paiva, 2025, p. 6). Os autores justificam a escolha do modelo 1D pelo caráter predominantemente fluvial da cheia de 2024 e pela distância entre a condição de contorno e o Guaíba, que deixa os erros de simplificação na lagoa se dissiparem antes de chegar à região de interesse (Medeiros; Fan; Paiva, 2025, p. 6).
+
+A chuva prevista vinha do ECMWF, com resolução de cerca de 0,1°, e do GEFS, com 0,25°, ambos com passo de seis horas e horizonte de até dez dias, usados sem pós-processamento. O vento observado vinha do INMET e de estações automáticas próximas à Lagoa dos Patos, e o vento previsto, dos mesmos dois modelos meteorológicos (Medeiros; Fan; Paiva, 2025, p. 8). O modelo hidrodinâmico não tinha calibração formal antes do evento e foi ajustado durante a cheia, com seções transversais acrescentadas e coeficientes de Manning que terminaram em 0,0375 no canal principal e 0,6 nas planícies; a única correção posterior era um deslocamento que fazia cada previsão partir do nível observado (Medeiros; Fan; Paiva, 2025, p. 6). O MGB dispõe de assimilação de vazões observadas, mas ela não foi usada em 2024, porque as estações que a alimentariam estavam danificadas (Medeiros; Fan; Paiva, 2025, p. 6). Os boletins combinavam cenários: um de referência sem chuva e sem vento, cenários conservadores com vento intenso e persistente sobre a lagoa e cenários com diferentes previsões de chuva (Medeiros; Fan; Paiva, 2025, p. 7).
+
+A segunda configuração é o modelo de pesquisa que Laipelt et al. (2026, p. 576-578) construíram depois do evento. Trata-se de um modelo bidimensional de águas rasas no HEC-RAS 6.4.1, com inércia, atrito, viscosidade turbulenta, vento e Coriolis, cobrindo cerca de 23.000 km² ao longo de 650 km, do alto Jacuí à saída da Lagoa dos Patos, mais 45 km de oceano para representar a maré. As vazões de montante vêm da telemetria da ANA e a condição de jusante, das séries de maré da rede SIMCosta na barra da lagoa. A malha tem resolução de 100 m nos rios e planícies e de 500 m nas áreas altas. A topografia é o ANADEM, modelo de terreno da ANA derivado do Copernicus GLO-30 com remoção do viés de vegetação, modificado para incorporar batimetria: seções transversais interpoladas no Jacuí, no Gravataí, no Sinos e no Caí, um rebaixamento de cerca de 4 m no canal do Taquari, onde faltavam dados, cartas náuticas digitalizadas da Marinha no Guaíba e na lagoa e o GEBCO no oceano. O vento do INMET entra por uma formulação de arrasto, e os coeficientes de Manning calibrados ficaram entre 0,025 e 0,035 nos canais e entre 0,08 e 0,15 nas planícies (Laipelt et al., 2026, p. 577-578). A validação usou réguas da ANA que não entraram como condição de contorno, altimetria do satélite SWOT, uma imagem de satélite próxima do pico e seis medições de vazão por ADCP feitas entre 5 e 31 de maio de 2024 (Laipelt et al., 2026, p. 578).
+
+Possa et al. (2022, p. 8-10) mostram uma terceira variante, aplicada à cheia de 1941: o próprio MGB, em sua versão hidrológico-hidrodinâmica, com propagação inercial entre minibacias, batimetria das cartas náuticas, vento horário de oito estações automáticas do INMET e um coeficiente de arrasto do vento calibrado por análise de sensibilidade.
+
+## 2. A v5 proposta
+
+A v5 seguirá o desenho do sistema operacional, com um modelo hidrológico a montante e um hidrodinâmico 1D a jusante, e usará o modelo 2D de Laipelt et al. (2026) como referência para a topografia, a condição de contorno de maré e a validação. A escolha do 1D como núcleo operacional segue o argumento de Medeiros, Fan e Paiva (2025, p. 6) e tem uma razão prática: uma rodada precisa caber no ciclo de atualização da telemetria, e o 2D de 23.000 km² serve melhor como verificação do que como previsão a cada hora.
+
+**Modelo hidrológico.** O componente a montante deve gerar a vazão de cada afluente a partir da chuva. O caminho mais próximo do IPH é o próprio MGB com a calibração regional citada acima, e o acesso a esse código e a essa calibração depende de contato com os desenvolvedores. Se não for possível, a alternativa é calibrar um modelo chuva-vazão semidistribuído por sub-bacia sobre as estações da ANA, aceitando um desempenho inicial pior. Em qualquer dos casos, a calibração herda o problema das vazões extrapoladas nas curvas-chave dos afluentes ([DISCUSSÃO, §6.2](DISCUSSAO.md#62-vazões-extrapoladas-nos-afluentes)). A chuva observada já é baixada pelo sistema, nas próprias estações da ANA, e será complementada pelas estações do INMET, a fonte usada pelo IPH (Medeiros; Fan; Paiva, 2025, p. 3).
+
+**Previsão meteorológica.** A chuva e o vento previstos virão dos mesmos sistemas usados em 2024, o ECMWF e o GEFS, por meio de seus serviços de dados abertos. Para reproduzir eventos passados, como fizemos na discussão, é preciso também um arquivo das previsões emitidas na época; sem ele, a reprodução teria de usar a chuva observada como se fosse previsão perfeita, o que superestima o desempenho. Obter esse arquivo é um dos primeiros itens da ordem de execução.
+
+**Modelo hidrodinâmico.** O domínio será o do sistema operacional: do Jacuí, a jusante da estação de Rio Pardo, até a saída da Lagoa dos Patos em Rio Grande, com os demais afluentes como contribuições laterais. A condição de jusante será a maré da rede SIMCosta, como em Laipelt et al. (2026, p. 576). A topografia será o ANADEM, também como em Laipelt et al. (2026, p. 577), porque o modelo de elevação usado pelo sistema operacional, gerado a partir de aerofotos da Infraestrutura Estadual de Dados Espaciais, pertence ao Estado e foi usado mediante autorização para fins acadêmicos (Medeiros; Fan; Paiva, 2025, p. 6). Os coeficientes de Manning partirão das faixas publicadas, 0,025 a 0,0375 no canal, e serão calibrados nos eventos de 2024 e 2025. A v5 precisará automatizar a montagem das condições de contorno e a execução de cada rodada a partir do código Python existente.
+
+**Vento.** O vento observado virá das estações horárias do INMET ao redor do Guaíba e da lagoa, o mesmo conjunto usado por Possa et al. (2022, p. 8) e por Laipelt et al. (2026, p. 577), e o previsto, do ECMWF e do GEFS. É a forçante que este projeto mais precisa incorporar: as falhas do próprio IPH na recessão de 2024 foram atribuídas às incertezas sobre o vento (Medeiros; Fan; Paiva, 2025, p. 14), e os picos secundários que o modelo atual subestimou coincidem com subidas que o IPH atribuiu à chuva local e ao vento sul (Medeiros; Fan; Paiva, 2025, p. 8).
+
+**Cenários e correção.** A v5 emitirá o mesmo conjunto de cenários dos boletins do IPH: referência sem chuva e sem vento, previsões de chuva do ECMWF e do GEFS, e um cenário de vento sul persistente (Medeiros; Fan; Paiva, 2025, p. 7). A correção de partida será o deslocamento usado pelo IPH, e a assimilação de vazões fica para uma etapa posterior. O dashboard deixará de mostrar a faixa entre cenários como se fosse um intervalo de confiança, já que, no modelo atual, ela conteve o observado em no máximo 12% das previsões (DISCUSSÃO, §2).
+
+O modelo de reservatório atual continua no repositório como linha de base. Ele roda em segundos, depende só da telemetria pública e permite medir quanto da melhora vem de cada componente acrescentado.
+
+## 3. Batimetria: usar a que existe
+
+A v5 usará as cartas náuticas da Diretoria de Hidrografia e Navegação da Marinha, levantadas entre 1961 e 1966 (Medeiros; Fan; Paiva, 2025, p. 6), as mesmas que fundamentam os modelos do IPH (Possa et al., 2022, p. 8; Laipelt et al., 2026, p. 577). Não há alternativa pública: o levantamento batimétrico contratado pelo governo do estado depois da cheia ainda não estava disponível quando o IPH preparou as previsões de junho de 2025 (Universidade Federal do Rio Grande do Sul, 2025a, p. 14), e não localizamos publicação dele nas fontes consultadas para este repositório.
+
+Usar a batimetria antiga tem amparo empírico. Na cheia de junho de 2025, as previsões hidrodinâmicas feitas com ela anteciparam a subida com cerca de três dias, e a equipe do IPH não identificou anomalia que indicasse perda de precisão por causa das mudanças no leito (Universidade Federal do Rio Grande do Sul, 2025a, p. 14-15). Há, porém, erosão documentada no canal junto ao Gasômetro e nos canais do Jacuí ([DISCUSSÃO, §6.1](DISCUSSAO.md#61-batimetria-dos-anos-1960)), justamente na seção que controla a relação entre nível e vazão na régua de referência. Os perfis levantados pela UFRGS em dezembro de 2024 (Universidade Federal do Rio Grande do Sul, 2025a, p. 10-12) permitirão um teste de sensibilidade: rodar a v5 com a seção do Gasômetro das cartas e com a seção medida em 2024 e verificar quanto o nível previsto muda. Quando o levantamento do estado for publicado, a substituição entra como etapa própria, com nova calibração.
+
+A digitalização das cartas é o item de maior risco de prazo. Se os dados digitalizados usados pelo IPH não puderem ser compartilhados, será preciso digitalizar as cartas a partir das edições disponíveis, georreferenciá-las e converter as profundidades, referidas ao nível de redução de cada carta, para o datum vertical do modelo.
+
+## 4. Validação
+
+A v5 será avaliada com o mesmo protocolo da [DISCUSSÃO, §2](DISCUSSAO.md#2-reprodução-das-quatro-versões-em-2024-e-2026): previsões refeitas a cada seis horas, cada uma usando só a informação disponível no instante do corte, inclusive a previsão meteorológica da época, e comparadas com o máximo observado nas 72 horas seguintes. A calibração usará maio de 2024 e junho de 2025; julho e setembro-outubro de 2026 ficam reservados como teste fora da amostra. Os critérios serão o erro do pico com 24 e 48 horas de antecedência, o viés, a fração de cortes em que a faixa de cenários contém o observado e o erro no horário do pico.
+
+A comparação externa mais exigente são as previsões oficiais. Na primeira onda de julho de 2026, o SGB e o IPH erraram o pico do Cais Mauá em 0,35 a 0,55 m (DISCUSSÃO, §1), contra erros de mais de 2 m do modelo atual na mesma antecedência. A v5 terá cumprido seu objetivo se ficar nessa faixa no evento de setembro e outubro de 2026, que nenhuma versão viu na calibração. As medições de vazão por ADCP, as três do PGA POA (Toldo et al., 2024) e as seis listadas por Laipelt et al. (2026, p. 578), servem para validar a vazão de saída do Guaíba, o ponto em que o modelo atual mais falha ([DISCUSSÃO, §4.4](DISCUSSAO.md#44-a-curva-de-saída-dá-cerca-de-metade-da-vazão-medida)).
+
+## 5. Ordem de execução
+
+| Etapa | Entrega | Dados novos | Critério para seguir |
+|---|---|---|---|
+| 0 | Correções no modelo atual (v4.1): curva de saída ancorada no ADCP e fim da extrapolação de crista quando a chuva para | Nenhum | Viés fora da amostra menor que o do v2 |
+| 1 | Ingestão de vento e chuva do INMET, maré do SIMCosta e arquivo de previsões do ECMWF e do GEFS | INMET, SIMCosta, ECMWF, GEFS | Séries completas para os eventos de 2024 a 2026 |
+| 2 | Geometria: ANADEM, cartas náuticas digitalizadas, seções dos afluentes | ANADEM, cartas da Marinha | Área do espelho em nível normal próxima dos 470 km² (Possa et al., 2022, p. 4) |
+| 3 | Modelo hidrodinâmico 1D forçado por vazões observadas e vento observado | Etapas 1 e 2 | Reproduz os níveis de 2024 e 2025 com as vazões medidas |
+| 4 | Modelo hidrológico dos afluentes | Chuva observada e prevista | Reproduz as vazões nas estações da ANA |
+| 5 | Acoplamento e cenários; reprodução de 2026 fora da amostra | Etapas 3 e 4 | Erro de pico na faixa das previsões oficiais |
+| 6 | Modelo 2D de verificação e teste de sensibilidade à batimetria | Perfis de 2024 da UFRGS | Diferença entre 1D e 2D documentada |
+
+A etapa 0 vem primeiro porque não exige dado novo, melhora a linha de base contra a qual a v5 será medida e testa a hipótese, levantada na discussão, de que parte do exagero vem da extrapolação de crista. A etapa 3 vem antes da 4 de propósito: forçado pelas vazões medidas, o modelo hidrodinâmico pode ser calibrado e avaliado sem que os erros do modelo hidrológico se misturem aos seus, a mesma separação de componentes que orientou a análise das versões anteriores.
+
+## 6. Referências
+
+COLLISCHONN, W.; ALLASIA, D.; SILVA, B. C. da; TUCCI, C. E. M. The MGB-IPH model for large-scale rainfall-runoff modelling. **Hydrological Sciences Journal**, [S. l.], v. 52, n. 5, p. 878-895, 2007. DOI: https://doi.org/10.1623/hysj.52.5.878.
+
+LAIPELT, L.; FAN, F. M.; PAIVA, R. C. D. de; MEDEIROS, M. S.; COLLISCHONN, W.; RUHOFF, A. Mechanisms and scenarios of the unprecedent flooding event in South Brazil 2024. **Hydrology and Earth System Sciences**, [S. l.], v. 30, p. 573-590, 2026. DOI: https://doi.org/10.5194/hess-30-573-2026.
+
+MEDEIROS, M. S.; FAN, F. M.; PAIVA, R. C. D. de. Emergency forecasts for water levels in the Guaíba River during the 2024 unprecedented flood in South Brazil. **RBRH**: Revista Brasileira de Recursos Hídricos, Porto Alegre, v. 30, e43, 2025. DOI: https://doi.org/10.1590/2318-0331.302520250025.
+
+POSSA, T. M.; COLLISCHONN, W.; JARDIM, P. F.; FAN, F. M. Hydrological-hydrodynamic simulation and analysis of the possible influence of the wind in the extraordinary flood of 1941 in Porto Alegre. **RBRH**: Revista Brasileira de Recursos Hídricos, Porto Alegre, v. 27, e29, 2022. DOI: https://doi.org/10.1590/2318-0331.272220220028.
+
+TOLDO, E. et al. **Vazões no Rio Guaíba durante os picos da enchente de maio de 2024**: nota técnica. Porto Alegre: PGA POA – Portos RS/UFRGS, 24 jul. 2024. Disponível em: https://www.ufrgs.br/iph/wp-content/uploads/2024/07/05_Nota-Vazoes-no-Rio-Guaiba-durante-os-picos-da-enchente-de-maio-de-2024.pdf. Acesso em: 8 nov. 2026.
+
+UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL. Instituto de Pesquisas Hidráulicas. **Nota técnica**: monitoramento ambiental e cheia no Guaíba e Delta do Jacuí em junho de 2025. Porto Alegre: IPH/UFRGS; PGA POA, 2025a. Disponível em: https://www.ufrgs.br/iph/wp-content/uploads/2025/07/Nota-Tecnica_Cheia-no-Guaiba-.pdf. Acesso em: 8 nov. 2026.

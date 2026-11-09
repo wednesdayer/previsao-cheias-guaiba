@@ -51,7 +51,7 @@ O repositório inclui um dashboard em Streamlit, um mapa de inundação interati
 2. **Saída sem medição.** Porto Alegre só mede nível. A saída é escrita como uma curva de descarga em potência, ajustada para fechar o balanço de reservatório em dois anos de dados. Uma perda robusta de Huber evita que o empilhamento pelo vento e o remanso da Lagoa dos Patos dominem o ajuste.
 3. **Previsão.** Rios que ainda estão subindo têm a crista extrapolada (taxa de subida com decaimento exponencial, em três cenários). O balanço é integrado por RK4, e o erro do modelo nas últimas 24 h entra como correção de viés em rampa.
 
-O método completo, cada hipótese e a referência por trás de cada etapa estão em **[docs/METODOLOGIA.md](docs/METODOLOGIA.md)**. As falhas, os problemas em aberto e a comparação com as previsões oficiais estão em **[docs/DISCUSSAO.md](docs/DISCUSSAO.md)**. As fontes de dados e suas peculiaridades estão em **[docs/DADOS.md](docs/DADOS.md)**. Os artigos estão em **[papers/](papers/)**.
+O método completo, cada hipótese e a referência por trás de cada etapa estão em **[docs/METODOLOGIA.md](docs/METODOLOGIA.md)**. As falhas, os problemas em aberto e a comparação com as previsões oficiais estão em **[docs/DISCUSSAO.md](docs/DISCUSSAO.md)**. As fontes de dados e suas peculiaridades estão em **[docs/DADOS.md](docs/DADOS.md)**. O plano da v5, um sistema hidrológico-hidrodinâmico nos moldes do IPH, com chuva, vento e a batimetria das cartas náuticas, está em **[docs/PROXIMOS_PASSOS.md](docs/PROXIMOS_PASSOS.md)**. Os artigos estão em **[papers/](papers/)**.
 
 ### Resultados
 
@@ -109,7 +109,7 @@ src/waters/
   dashboard/     app Streamlit e componentes
 scripts/         backfill, calibrate, build_area_curve, build_inundation, replay_event
 tests/           testes unitários com dados sintéticos e uma amostra real do XML da ANA
-docs/            METODOLOGIA.md, DADOS.md, DISCUSSAO.md, resultados/, imagens
+docs/            METODOLOGIA.md, DADOS.md, DISCUSSAO.md, PROXIMOS_PASSOS.md, resultados/, imagens
 papers/          referências (PDFs de acesso aberto + bibliografia + SHA256SUMS)
 ```
 
@@ -138,7 +138,7 @@ The repository includes a Streamlit dashboard, an interactive inundation map, a 
 
 > **This is a personal research project, not an official forecast.** For warnings, follow the Defesa Civil do Rio Grande do Sul.
 
-The detailed documentation is in Portuguese: [methodology](docs/METODOLOGIA.md), [data](docs/DADOS.md), [discussion](docs/DISCUSSAO.md) (with an English summary at the top) and [references](papers/README.md).
+The detailed documentation is in Portuguese: [methodology](docs/METODOLOGIA.md), [data](docs/DADOS.md), [discussion](docs/DISCUSSAO.md) (with an English summary at the top), [next steps](docs/PROXIMOS_PASSOS.md) and [references](papers/README.md). The next version (v5) is planned as a hydrological-hydrodynamic system along the lines of the IPH/UFRGS one: a rainfall-runoff model for the tributaries, a 1D hydrodynamic model of the Guaíba and the Lagoa dos Patos forced by wind and tide, and the 1960s Navy bathymetry, the only one publicly available.
 
 ### How it works
 
